@@ -1,4 +1,10 @@
+import Hero from '@/components/Hero'
+
 const page = () => {
-  return <div className="text-red-500">page</div>
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-main-bg font-workSans">
+      <Hero />
+    </main>
+  )
 }
 export default page
