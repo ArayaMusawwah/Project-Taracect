@@ -17,7 +17,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }: rendererProps) =
     return <h1>asu</h1>
   } else {
     return (
-      <div className="inline-flex space-x-4 *:flex *:size-20 *:flex-col *:items-center *:justify-center *:rounded-full *:bg-pink-700 *:text-sm">
+      <div className="inline-flex space-x-2 *:flex *:size-16 *:flex-col *:items-center *:justify-center *:rounded-full *:bg-pink-700 *:text-sm md:space-x-4 md:*:size-20">
         <div>
           {days}
           <span className="block">Hari</span>
@@ -44,7 +44,7 @@ const Hero = () => {
     <section className="text-center text-white">
       <div>
         <p>Kepada Bapak/Ibu/Saudara/i,</p>
-        <h1 className="mb-4 mt-6 font-sacramento text-7xl capitalize tracking-wide">
+        <h1 className="mb-4 mt-6 font-sacramento text-5xl capitalize tracking-wide md:text-7xl">
           {resepsi.nama_mempelai}
         </h1>
         <p>Akan melangsungkan resepsi pernikahan dalam:</p>
