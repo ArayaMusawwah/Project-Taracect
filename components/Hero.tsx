@@ -1,6 +1,7 @@
 'use client'
 
 import { resepsi } from '@/data'
+import Image from 'next/image'
 import Link from 'next/link'
 import Countdown from 'react-countdown'
 
@@ -42,7 +43,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }: rendererProps) =
 const Hero = () => {
   return (
     <section className="text-center text-white">
-      <div>
+      <div className="relative z-10">
         <p>Kepada Bapak/Ibu/Saudara/i,</p>
         <h1 className="mb-4 mt-6 font-sacramento text-5xl capitalize tracking-wide md:text-7xl">
           {resepsi.nama_mempelai}
