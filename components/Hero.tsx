@@ -1,13 +1,13 @@
 'use client'
 
 import { resepsi } from '@/data'
+import useMediaQuery from '@/hooks/useMediaQuery'
 import { replaceDanToAmpersand } from '@/lib/utils'
 import Link from 'next/link'
 import { Snowfall } from 'react-snowfall'
-import Countdown from './Countdown'
 
 const Hero = () => {
-  const isMobile = window.innerWidth < 768
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
     <section className="text-center text-white">
