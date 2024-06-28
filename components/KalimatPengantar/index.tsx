@@ -3,7 +3,7 @@ import Wayangs from '../Jawa/Wayangs'
 
 const KalimatPengantar = () => {
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center text-center text-black">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-x-hidden text-center text-black">
       {/* TODO: add proper looking good shadow */}
       <div
         className="absolute w-full max-w-sm rounded-lg bg-main-accent3/50 p-2 sm:max-w-xl"
@@ -39,7 +39,7 @@ const KalimatPengantar = () => {
         </div>
       </div>
 
-      {/* <Wayangs /> */}
+      <Wayangs />
     </section>
   )
 }
