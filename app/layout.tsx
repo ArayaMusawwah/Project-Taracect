@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Work_Sans, Sacramento } from 'next/font/google'
-import './globals.css'
+import '@/styles/globals.css'
 import { resepsi } from '@/data'
 import { toCapitalize } from '@/lib/utils'
 

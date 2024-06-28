@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import About from '../About'
 import Hero from '../Hero'
+import KalimatPengantar from '../KalimatPengantar'
 
 const MainLayout = () => {
   const [isOverflowHidden, setIsOverflowHidden] = useState(true)
@@ -14,7 +15,9 @@ const MainLayout = () => {
     >
       <div
         className="relative flex min-h-dvh flex-col items-center justify-center bg-main-bg font-workSans"
-        style={{ background: 'radial-gradient(circle at 10% 35%, #784a3e 0%, #322c2b 100%)' }}
+        style={{
+          background: 'radial-gradient(circle at 10% 35%, #784a3e 0%, #322c2b 100%)'
+        }}
       >
         <Hero
           setIsOverflowHidden={setIsOverflowHidden}

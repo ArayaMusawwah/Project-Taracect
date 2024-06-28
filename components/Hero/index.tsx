@@ -1,10 +1,9 @@
 'use client'
 
-import { resepsi } from '@/data'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import { replaceDanToAmpersand } from '@/lib/utils'
 import { Snowfall } from 'react-snowfall'
 import Wayangs from '../Jawa/Wayangs'
+import Title from './Title'
 
 const Hero = ({
   setIsOverflowHidden,
@@ -30,17 +29,7 @@ const Hero = ({
       id="home"
     >
       <div className="relative z-10 pt-20">
-        <div className="mb-8">
-          <p>The Wedding Of</p>
-          <h1 className="my-6 font-sacramento text-5xl capitalize tracking-wide md:text-7xl">
-            {resepsi.nama_mempelai}
-          </h1>
-          <p>Kepada Bapak/Ibu/Saudara/i Yth: </p>
-          <h2 className="mt-4 text-3xl font-semibold">
-            {replaceDanToAmpersand('Araya dan Keluarga')}
-          </h2>
-          <p className="text-lg">Ditempat</p>
-        </div>
+        <Title />
 
         <button
           onClick={handleClick}
