@@ -3,13 +3,13 @@ import Wayangs from '../Jawa/Wayangs'
 
 const KalimatPengantar = () => {
   return (
-    <section className="relative flex min-h-lvh w-full items-center justify-center text-center text-black">
+    <section className="relative flex min-h-screen w-full items-center justify-center text-center text-black">
       {/* TODO: add proper looking good shadow */}
       <div
         className="absolute w-full max-w-sm rounded-lg bg-main-accent3/50 p-2 sm:max-w-xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
-        <div className="h-screen w-full bg-main-accent3 px-8 py-32">
+        <div className="h-lvh w-full bg-main-accent3 px-8 py-32">
           <h1 className="mt-14 font-playwriteRo text-3xl font-bold">Ar-Rum 16</h1>
           <p className="mt-12 font-serif text-xl sm:text-3xl">
             وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا
@@ -39,7 +39,7 @@ const KalimatPengantar = () => {
         </div>
       </div>
 
-      <Wayangs />
+      {/* <Wayangs /> */}
     </section>
   )
 }
