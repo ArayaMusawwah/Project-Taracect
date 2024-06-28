@@ -3,8 +3,8 @@ import Image from 'next/image'
 const Wayangs = ({ isWayang }: { isWayang?: boolean }) => {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div className='absolute top-0 z-10 h-[7rem] w-screen rotate-180 bg-[url("/curtain.png")] bg-cover bg-center bg-repeat-x md:h-[10rem] lg:bg-contain' />
-      <div className='absolute bottom-0 z-10 h-[7rem] w-screen bg-[url("/curtain.png")] bg-cover bg-center bg-repeat-x md:h-[10rem] lg:bg-contain' />
+      <div className='absolute top-0 z-10 h-[7rem] w-screen rotate-180 bg-[url("/curtain.png")] bg-cover bg-center bg-repeat-x lg:bg-contain' />
+      <div className='absolute bottom-0 z-10 h-[7rem] w-screen bg-[url("/curtain.png")] bg-cover bg-center bg-repeat-x lg:bg-contain' />
 
       <Image
         src={'/wayang-kiri.png'}

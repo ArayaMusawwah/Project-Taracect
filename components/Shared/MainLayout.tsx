@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import About from '../About'
 import Hero from '../Hero'
 import KalimatPengantar from '../KalimatPengantar'
+import Pengantin from '../Pengantin'
 
 const MainLayout = () => {
   const [isOverflowHidden, setIsOverflowHidden] = useState(true)
@@ -26,6 +27,7 @@ const MainLayout = () => {
         />
         <About aboutRef={aboutRef} />
         <KalimatPengantar />
+        <Pengantin />
       </div>
     </main>
   )

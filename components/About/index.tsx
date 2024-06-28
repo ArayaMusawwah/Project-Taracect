@@ -1,5 +1,5 @@
 import { resepsi } from '@/data'
-import Wayangs from '../Jawa/Wayangs'
+import Wayangs from '../Shared/Wayangs'
 import Image from 'next/image'
 import Countdown from '../Hero/Countdown'
 import { formatDate } from '@/lib/utils'
