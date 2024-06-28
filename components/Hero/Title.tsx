@@ -15,7 +15,7 @@ const Title = () => {
       </h1>
       <p>Kepada Bapak/Ibu/Saudara/i Yth: </p>
       <h2 className="mt-4 text-3xl font-semibold">
-        {replaceDanToAmpersand(tamu || 'Tamu Pernikahan')}
+        {replaceDanToAmpersand(tamu || 'Tamu Undangan')}
       </h2>
       <p className="text-lg">Ditempat</p>
     </div>

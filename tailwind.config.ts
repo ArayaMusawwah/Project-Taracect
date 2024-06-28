@@ -11,10 +11,6 @@ const config = {
   ],
   prefix: '',
   theme: {
-    fontFamily: {
-      workSans: 'var(--font-work-sans)',
-      sacramento: 'var(--font-sacramento)'
-    },
     container: {
       center: true,
       padding: '2rem',
@@ -23,6 +19,11 @@ const config = {
       }
     },
     extend: {
+      fontFamily: {
+        workSans: 'var(--font-work-sans)',
+        sacramento: 'var(--font-sacramento)',
+        playwriteRo: '"Playwrite Ro", sans-serif'
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

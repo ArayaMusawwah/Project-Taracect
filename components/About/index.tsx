@@ -5,6 +5,7 @@ import Countdown from '../Hero/Countdown'
 import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
 import { FaCalendarAlt } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
   return (
@@ -28,7 +29,12 @@ const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
           <p>Akan melangsungkan resepsi pernikahan dalam: </p>
           <Countdown />
           <p className="text-lg">{formatDate(resepsi.tanggal_resepsi)}</p>
-          <div className="mt-2 inline-flex items-center space-x-2 rounded-md bg-main-accent2 px-4 py-2">
+          <motion.div
+            className="mt-2 inline-flex items-center space-x-2 rounded-md bg-main-accent2 px-4 py-2"
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.2 }}
+            transition={{ duration: 0.5, type: 'spring', bounce: 0.7 }}
+          >
             <FaCalendarAlt />
             <Link
               title="Add to Calendar"
@@ -38,7 +44,7 @@ const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
             >
               Add to Calendar
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
       <Wayangs isWayang />

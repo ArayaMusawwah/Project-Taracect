@@ -25,6 +25,7 @@ const MainLayout = () => {
           aboutRef={aboutRef}
         />
         <About aboutRef={aboutRef} />
+        <KalimatPengantar />
       </div>
     </main>
   )
