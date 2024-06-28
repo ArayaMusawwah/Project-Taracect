@@ -1,12 +1,6 @@
-import Hero from '@/components/Hero'
-import Wayangs from '@/components/Wayangs'
+import MainLayout from '@/components/Shared/MainLayout'
 
 const page = () => {
-  return (
-    <main className="relative flex min-h-dvh items-center justify-center bg-main-bg font-workSans">
-      <Hero />
-      <Wayangs />
-    </main>
-  )
+  return <MainLayout />
 }
 export default page

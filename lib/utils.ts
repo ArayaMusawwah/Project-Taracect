@@ -1,4 +1,3 @@
-import useMediaQuery from '@/hooks/useMediaQuery'
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -12,4 +11,18 @@ export const toCapitalize = (str: string): string => {
 
 export const replaceDanToAmpersand = (str: string): string => {
   return str.replace(/\bdan\b/g, '&')
+}
+
+export const formatDate = (date: string): string => {
+  const tanggalTanpaTimezone = date.split(' ')[0]
+
+  const tanggalObjek = new Date(tanggalTanpaTimezone)
+  const tanggalFormat = tanggalObjek.toLocaleDateString('id-ID', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+
+  return tanggalFormat
 }

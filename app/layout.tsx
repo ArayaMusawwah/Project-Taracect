@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${workSans.variable} ${sacramento.variable}`}>{children}</body>
+      <body className={`${workSans.variable} ${sacramento.variable} `}>{children}</body>
     </html>
   )
 }
