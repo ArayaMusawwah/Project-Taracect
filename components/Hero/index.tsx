@@ -26,7 +26,7 @@ const Hero = ({
 
   return (
     <section
-      className="relative flex min-h-svh w-full items-center justify-center text-center text-white"
+      className="relative flex min-h-dvh w-full items-center justify-center text-center text-white"
       id="home"
     >
       <div className="relative z-10 pt-20">
