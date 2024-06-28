@@ -9,7 +9,7 @@ import { FaCalendarAlt } from 'react-icons/fa'
 const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
   return (
     <section
-      className="relative flex min-h-dvh w-full items-center justify-center text-center text-white"
+      className="relative flex min-h-lvh w-full items-center justify-center text-center text-white"
       id="about"
       ref={aboutRef}
     >
