@@ -4,6 +4,7 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import { Snowfall } from 'react-snowfall'
 import Wayangs from '../Jawa/Wayangs'
 import Title from './Title'
+import { Suspense } from 'react'
 
 const Hero = ({
   setIsOverflowHidden,
@@ -29,7 +30,9 @@ const Hero = ({
       id="home"
     >
       <div className="relative z-10 pt-20">
-        <Title />
+        <Suspense>
+          <Title />
+        </Suspense>
 
         <button
           onClick={handleClick}
