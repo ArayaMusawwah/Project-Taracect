@@ -1,7 +1,6 @@
-import MainLayout from '@/components/Shared/MainLayout'
-import { useRouter } from 'next/router'
+import Container from '@/components/Shared/Container'
 
 const page = () => {
-  return <MainLayout />
+  return <Container />
 }
 export default page

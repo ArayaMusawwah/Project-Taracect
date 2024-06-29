@@ -30,7 +30,7 @@ const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
           </h1>
           <p>Akan melangsungkan resepsi pernikahan dalam: </p>
           <Countdown />
-          <p className="text-lg">{date.tanggalFormat}</p>
+          <p className="my-3 text-2xl font-semibold">{date.tanggalFormat}</p>
           <motion.div
             className="mt-2 inline-flex items-center space-x-2 rounded-md bg-main-accent2 px-4 py-2"
             initial={{ scale: 1 }}

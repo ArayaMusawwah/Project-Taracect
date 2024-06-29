@@ -32,14 +32,14 @@ const Wayangs = ({ isWayang, isBoneka }: { isWayang?: boolean; isBoneka?: boolea
             alt="wayang"
             width={400}
             height={500}
-            className="absolute left-1/2 top-32 -rotate-12"
+            className="absolute left-1/2 top-32 z-40 -rotate-12"
           />
           <Image
             src={'/wayang2.png'}
             alt="wayang"
             width={400}
             height={500}
-            className="absolute right-1/2 top-32 rotate-12"
+            className="absolute right-1/2 top-32 z-40 rotate-12"
           />
         </>
       )}

@@ -46,7 +46,8 @@
     scroll-behavior: smooth;
   }
 
-  section {
+  section,
+  footer {
     scroll-snap-align: center;
   }
 

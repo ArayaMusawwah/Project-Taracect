@@ -15,7 +15,7 @@ interface Props {
 
 const CardDate = ({ title, waktu, tanggal, bulan, tahun, hari, lokasi, maps }: Props) => {
   return (
-    <div className="relative flex-1 rounded-lg bg-gradient-to-br from-main-accent2/90 to-main-accent2/70 p-2 font-libreBaskerville sm:grid sm:grid-rows-5 sm:px-10 sm:py-7">
+    <div className="relative flex-1 rounded-lg bg-gradient-to-br from-main-accent2/70 via-main-accent2/90 to-main-accent2/70 p-2 font-libreBaskerville sm:grid sm:grid-rows-5 sm:gap-1 sm:px-10 sm:py-7">
       <h2 className="mb-2 text-center font-lobster text-3xl tracking-wider sm:text-5xl">{title}</h2>
 
       <div className="grid grid-cols-6 justify-center font-bold">

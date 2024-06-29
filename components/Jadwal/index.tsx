@@ -11,7 +11,7 @@ const Jadwal = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
-    <section className="relative flex min-h-dvh w-full items-center justify-center overflow-hidden text-center text-black">
+    <section className="relative flex min-h-lvh w-full items-center justify-center overflow-hidden text-center text-black">
       <div
         className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-5xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}

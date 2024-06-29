@@ -24,7 +24,7 @@ const Hero = ({
     setIsOverflowHidden(false)
     setTimeout(() => {
       aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, 100)
+    }, 500)
   }
 
   return (
@@ -39,7 +39,7 @@ const Hero = ({
 
         <motion.button
           onClick={handleClick}
-          className={`my-4 h-10 w-44 rounded-sm bg-main-accent2 text-white transition-all`}
+          className={`z-50 my-4 h-10 w-44 rounded-sm bg-main-accent2 text-white transition-all`}
           style={isOverflowHidden ? { transform: 'scale(1)' } : { transform: 'scale(0)' }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
