@@ -22,7 +22,9 @@ const config = {
       fontFamily: {
         workSans: 'var(--font-work-sans)',
         sacramento: 'var(--font-sacramento)',
-        playwriteRo: '"Playwrite Ro", sans-serif'
+        playwriteRo: '"Playwrite Ro", sans-serif',
+        lobster: 'var(--font-lobster)',
+        libreBaskerville: 'var(--font-libre-baskerville)'
       },
       colors: {
         border: 'hsl(var(--border))',

@@ -1,4 +1,4 @@
-import { resepsi } from '@/data'
+import { data } from '@/data'
 import Wayangs from '../Shared/Wayangs'
 import Image from 'next/image'
 import Countdown from '../Hero/Countdown'
@@ -8,6 +8,8 @@ import { FaCalendarAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
+  const date = formatDate(data.resepsi.tanggal)
+
   return (
     <section
       className="relative flex min-h-lvh w-full items-center justify-center text-center text-white"
@@ -24,16 +26,17 @@ const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
       <div className="relative z-10 pt-10">
         <div className="mb-4">
           <h1 className="my-6 font-sacramento text-5xl capitalize tracking-wide md:text-7xl">
-            {resepsi.nama_mempelai}
+            {data.mempelai.keduaMempelai}
           </h1>
           <p>Akan melangsungkan resepsi pernikahan dalam: </p>
           <Countdown />
-          <p className="text-lg">{formatDate(resepsi.tanggal_resepsi)}</p>
+          <p className="text-lg">{date.tanggalFormat}</p>
           <motion.div
             className="mt-2 inline-flex items-center space-x-2 rounded-md bg-main-accent2 px-4 py-2"
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
-            transition={{ duration: 0.5, type: 'spring', bounce: 0.7 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.5, type: 'spring', bounce: 0.5 }}
           >
             <FaCalendarAlt />
             <Link
@@ -47,7 +50,7 @@ const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
           </motion.div>
         </div>
       </div>
-      <Wayangs isWayang />
+      <Wayangs isWayang isBoneka />
     </section>
   )
 }

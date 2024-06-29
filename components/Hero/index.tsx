@@ -58,7 +58,7 @@ const Hero = ({
       </div>
 
       <Snowfall snowflakeCount={isMobile ? 50 : 150} wind={[1, 5]} />
-      <Wayangs isWayang />
+      <Wayangs isWayang isBoneka />
     </section>
   )
 }

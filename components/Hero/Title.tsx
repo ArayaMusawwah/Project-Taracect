@@ -1,6 +1,6 @@
 'use client'
 
-import { resepsi } from '@/data'
+import { data } from '@/data'
 import { replaceDanToAmpersand } from '@/lib/utils'
 import { useSearchParams } from 'next/navigation'
 
@@ -11,7 +11,7 @@ const Title = () => {
     <div className="mb-8">
       <p>The Wedding Of</p>
       <h1 className="my-6 font-sacramento text-5xl capitalize tracking-wide md:text-7xl">
-        {resepsi.nama_mempelai}
+        {data.mempelai.keduaMempelai}
       </h1>
       <p>Kepada Bapak/Ibu/Saudara/i Yth: </p>
       <h2 className="mt-4 text-3xl font-semibold">

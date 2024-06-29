@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import TheCountdown from 'react-countdown'
-import { resepsi } from '@/data'
+import { data } from '@/data'
 
 interface rendererProps {
   days: number
@@ -13,24 +13,24 @@ interface rendererProps {
 
 const Renderer = ({ days, hours, minutes, seconds, completed }: rendererProps) => {
   if (completed) {
-    return <h1>asu</h1>
+    return <h1>The Time Has Come!</h1>
   } else {
     return (
-      <div className="inline-flex space-x-2 font-semibold text-black *:flex *:size-16 *:flex-col *:items-center *:justify-center *:rounded-full *:bg-main-accent2 *:text-sm md:space-x-4 md:*:size-20 *:md:text-xl">
+      <div className="inline-flex space-x-2 font-semibold text-white *:flex *:size-16 *:flex-col *:items-center *:justify-center *:-space-y-2 *:rounded-full *:bg-main-accent2 *:text-sm md:space-x-4 md:*:size-20 md:*:text-lg">
         <div>
-          {days}
+          <span>{days}</span>
           <span className="block">Hari</span>
         </div>
         <div>
-          {hours}
+          <span>{hours}</span>
           <span className="block">Jam</span>
         </div>
         <div>
-          {minutes}
+          <span>{minutes}</span>
           <span className="block">Menit</span>
         </div>
         <div>
-          {seconds}
+          <span>{seconds}</span>
           <span className="block">Detik</span>
         </div>
       </div>
@@ -47,7 +47,7 @@ const Countdown = () => {
 
   return (
     <div className="my-4">
-      {isClient && <TheCountdown date={Date.parse(resepsi.tanggal_resepsi)} renderer={Renderer} />}
+      {isClient && <TheCountdown date={Date.parse(data.resepsi.tanggal)} renderer={Renderer} />}
     </div>
   )
 }

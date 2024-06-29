@@ -1,8 +1,20 @@
 import type { Metadata } from 'next'
-import { Work_Sans, Sacramento } from 'next/font/google'
+import { Work_Sans, Sacramento, Lobster, Libre_Baskerville } from 'next/font/google'
 import '@/styles/globals.css'
-import { resepsi } from '@/data'
+import { data } from '@/data'
 import { toCapitalize } from '@/lib/utils'
+
+const lobster = Lobster({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-lobster'
+})
+
+const libreBaskerville = Libre_Baskerville({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-libre-baskerville'
+})
 
 const workSans = Work_Sans({
   subsets: ['latin'],
@@ -16,8 +28,8 @@ const sacramento = Sacramento({
 })
 
 export const metadata: Metadata = {
-  title: `${toCapitalize(resepsi.nama_mempelai)} - Undangan Pernikahan`,
-  description: `Undangan Pernikahan ${toCapitalize(resepsi.nama_mempelai)}`
+  title: `${toCapitalize(data.mempelai.keduaMempelai)} - Undangan Pernikahan`,
+  description: `Undangan Pernikahan ${toCapitalize(data.mempelai.keduaMempelai)}`
 }
 
 export default function RootLayout({
@@ -27,7 +39,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${workSans.variable} ${sacramento.variable} `}>{children}</body>
+      <body
+        className={`${workSans.variable} ${sacramento.variable} ${lobster.variable} ${libreBaskerville.variable}`}
+      >
+        {children}
+      </body>
     </html>
   )
 }
