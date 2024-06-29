@@ -8,7 +8,7 @@ const Pengantin = () => {
         className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
-        <div className="h-[83vh] w-full bg-main-accent3 py-24 sm:py-32">
+        <div className="h-[83vh] w-full bg-main-accent3 py-24 sm:py-24">
           <h2 className="font-playwriteRo text-xl sm:font-semibold">Assalamualaikum wr wb</h2>
           <p className="my-3 text-pretty px-4 text-center max-sm:text-sm">
             Dengan izin dan ridhlo Allah Subhanallah Wa Ta&apos;ala, insyaAllah kami akan
