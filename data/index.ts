@@ -9,7 +9,8 @@ export const data = {
     perempuan: {
       nama: 'rosalia tsuraya',
       ortu: 'Bapak Albert Lo Siento & Ibu Vladimir Aizel'
-    }
+    },
+    story: 'bahlokii nahkip sellesejoor'
   },
 
   resepsi: {

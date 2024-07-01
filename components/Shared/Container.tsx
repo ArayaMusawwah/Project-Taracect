@@ -8,6 +8,7 @@ import Pengantin from '../Pengantin'
 import Jadwal from '../Jadwal'
 import Penutup from '../Penutup'
 import Footer from '../Footer'
+import Story from '../Story'
 
 const Container = () => {
   const [isOverflowHidden, setIsOverflowHidden] = useState(true)
@@ -34,6 +35,7 @@ const Container = () => {
         <KalimatPengantar />
         <Pengantin />
         <Jadwal />
+        <Story />
 
         <Penutup />
       </main>

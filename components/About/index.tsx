@@ -23,7 +23,7 @@ const About = ({ aboutRef }: { aboutRef: React.RefObject<HTMLDivElement> }) => {
         height={400}
         className="absolute top-1/4"
       />
-      <div className="relative z-10 pt-10">
+      <div className="relative z-[60] pt-10">
         <div className="mb-4">
           <h1 className="my-6 font-sacramento text-5xl capitalize tracking-wide md:text-7xl">
             {data.mempelai.keduaMempelai}
