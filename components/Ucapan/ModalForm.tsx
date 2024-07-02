@@ -15,7 +15,7 @@ import {
 import { Button } from '../ui/button'
 import { useRef } from 'react'
 
-const ModalForm = ({ fetchMessages }: { fetchMessages: () => void }) => {
+const ModalForm = ({ fetchMessages }: { fetchMessages: () => Promise<void> }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
 
