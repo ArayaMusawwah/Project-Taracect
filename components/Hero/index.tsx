@@ -5,7 +5,7 @@ import { Snowfall } from 'react-snowfall'
 import Wayangs from '../Shared/Wayangs'
 import Title from './Title'
 import { Suspense, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FaEnvelopeOpen } from 'react-icons/fa'
 
 const Hero = ({
@@ -32,7 +32,7 @@ const Hero = ({
       className="relative flex min-h-dvh w-full items-center justify-center text-center text-white"
       id="home"
     >
-      <div className="relative z-10 pt-14 sm:pt-20">
+      <div className="relative z-[60] pt-14 sm:pt-20">
         <Suspense>
           <Title />
         </Suspense>

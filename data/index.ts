@@ -1,6 +1,8 @@
 export const data = {
   mempelai: {
     keduaMempelai: 'iqbal & lisa',
+    story:
+      'pagi ketemu, siang dilamar, malem dilamar, pagi dilamar, malam dilamar, paginya lagi ke undangan temen',
 
     laki: {
       nama: 'muhammad iqbal ramadhan',
@@ -9,8 +11,7 @@ export const data = {
     perempuan: {
       nama: 'rosalia tsuraya',
       ortu: 'Bapak Albert Lo Siento & Ibu Vladimir Aizel'
-    },
-    story: 'bahlokii nahkip sellesejoor'
+    }
   },
 
   resepsi: {

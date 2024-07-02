@@ -4,7 +4,6 @@ import Wayangs from '../Shared/Wayangs'
 const KalimatPengantar = () => {
   return (
     <section className="relative flex min-h-screen w-full items-end justify-center overflow-hidden text-center text-black">
-      {/* TODO: add proper looking good shadow */}
       <div
         className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}

@@ -3,6 +3,7 @@ import { Work_Sans, Sacramento, Lobster, Libre_Baskerville } from 'next/font/goo
 import '@/styles/globals.css'
 import { data } from '@/data'
 import { toCapitalize } from '@/lib/utils'
+import { Toaster } from '@/components/ui/toaster'
 
 const lobster = Lobster({
   subsets: ['latin'],
@@ -43,6 +44,7 @@ export default function RootLayout({
         className={`${workSans.variable} ${sacramento.variable} ${lobster.variable} ${libreBaskerville.variable}`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   )

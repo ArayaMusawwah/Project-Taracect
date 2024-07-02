@@ -1,5 +1,5 @@
 declare global {
-  interface String {
-    toCapitalize(): string
+  interface Global {
+    _mongoClientPromise: Promise<MongoClient>
   }
 }

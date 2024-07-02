@@ -65,7 +65,9 @@ const config = {
           accent1: '#803d3b',
           accent2: '#af8260',
           accent3: '#e4c59e',
-          accent4: '#FF0080'
+          accent4: '#FF0080',
+          accent5: '#B19470',
+          accent6: '#F8F4E1'
         }
       },
       borderRadius: {
