@@ -6,19 +6,18 @@ import ModalForm from './ModalForm'
 import Card from './Card'
 import { useEffect, useState } from 'react'
 import { IMessage } from '@/lib/database/message.model'
-import axios from 'axios'
 
 const Ucapan = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)')
   const [messages, setMessages] = useState<IMessage[]>()
 
   const fetchMessages = async () => {
-    const res = await axios.get('https://taratect.vercel.app/api/message', {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
+    const res = await fetch('https://taratect.vercel.app/api/message', {
+      cache: 'no-store'
     })
-    return setMessages(res.data.data)
+    const data = await res.json()
+
+    return setMessages(data.data)
   }
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 'use client'
 
-import axios from 'axios'
 import { FaEnvelope } from 'react-icons/fa'
 import {
   AlertDialog,
@@ -26,14 +25,21 @@ const ModalForm = ({ fetchMessages }: { fetchMessages: () => Promise<void> }) =>
       date: new Date()
     }
 
-    await axios
-      .post('https://taratect.vercel.app/api/message/create', data, {
+    try {
+      const fetchData = await fetch('https://taratect.vercel.app/api/message/create', {
+        method: 'POST',
         headers: {
+          cache: 'no-store',
+          'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
-        }
+        },
+        body: JSON.stringify(data)
       })
-      .then(() => fetchMessages())
-      .catch((err) => console.log(err))
+
+      if (fetchData.status === 200) fetchMessages()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
