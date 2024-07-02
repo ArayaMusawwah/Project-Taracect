@@ -13,7 +13,11 @@ const Ucapan = () => {
   const [messages, setMessages] = useState<IMessage[]>()
 
   const fetchMessages = async () => {
-    const res = await axios.get('https://taratect.vercel.app/api/message')
+    const res = await axios.get('https://taratect.vercel.app/api/message', {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
     return setMessages(res.data.data)
   }
 
