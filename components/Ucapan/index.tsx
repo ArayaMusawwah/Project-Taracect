@@ -1,7 +1,6 @@
 'use client'
 
 import useMediaQuery from '@/hooks/useMediaQuery'
-import { PaginationUi } from '../Shared/Pagination'
 import Wayangs from '../Shared/Wayangs'
 import ModalForm from './ModalForm'
 import Card from './Card'
@@ -14,7 +13,7 @@ const Ucapan = () => {
   const [messages, setMessages] = useState<IMessage[]>()
 
   const fetchMessages = async () => {
-    const res = await axios.get('/api/message')
+    const res = await axios.get('https://taratect.vercel.app/api/message')
     return setMessages(res.data.data)
   }
 
@@ -39,7 +38,9 @@ const Ucapan = () => {
             <ModalForm fetchMessages={fetchMessages} />
           </div>
 
-          <p className="my-2 w-full text-right text-sm font-light italic">Total Ucapan: 140</p>
+          <p className="my-2 w-full text-right text-sm font-light italic">
+            Total Ucapan: {messages?.length}
+          </p>
           <div className="flex max-h-[70%] flex-col gap-4 overflow-y-scroll pb-10">
             {messages?.map((message) => <Card key={message._id} {...message} />)}
           </div>

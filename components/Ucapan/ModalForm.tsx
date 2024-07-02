@@ -27,7 +27,11 @@ const ModalForm = ({ fetchMessages }: { fetchMessages: () => void }) => {
     }
 
     await axios
-      .post('/api/message/create', data)
+      .post('https://taratect.vercel.app/api/message/create', data, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
       .then(() => fetchMessages())
       .catch((err) => console.log(err))
   }
