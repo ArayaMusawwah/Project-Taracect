@@ -13,8 +13,10 @@ const Ucapan = () => {
 
   const fetchMessages = async () => {
     const res = await fetch('https://taratect.vercel.app/api/message', {
+      cache: 'no-cache',
       headers: {
-        'Cache-Control': 'no-cache'
+        'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': '*'
       }
     })
     const data = await res.json()
