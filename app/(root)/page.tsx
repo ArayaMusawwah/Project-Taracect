@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 import Story from '@/components/Story'
 import Ucapan from '@/components/Ucapan'
 import AudioPlayer from '@/components/AudioPlayer'
-import SnowfallContainer from '@/components/Shared/SnowfallContainer'
+import KadoDigital from '@/components/KadoDigital'
 
 const page = () => {
   return (
@@ -29,11 +29,10 @@ const page = () => {
         <Jadwal />
         <Story />
         {/* <Ucapan /> */}
-
+        <KadoDigital />
         <Penutup />
       </main>
 
-      <SnowfallContainer />
       <AudioPlayer />
       <Footer />
     </Container>

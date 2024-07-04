@@ -28,5 +28,17 @@ export const data = {
     maps: 'https://g.co/kgs/ReT8rxQ',
     tanggal: '01-AUG-2024 09:00:00 GMT+0700',
     waktu: '10:00 - 11:00 WIB'
+  },
+
+  kado: {
+    penerima: 'Muhammad Iqbal Ramadhan',
+    nomer: '081286765654',
+    alamat:
+      'Jl. Siliwangi No.2, Pamulang Bar., Kec. Pamulang, Kota Tangerang Selatan, Banten 15417',
+
+    rekening: [
+      { nomor: '39428347293', gambar: '/mandiri.svg', atasNama: 'Muhammad Iqbal Ramadhan' },
+      { nomor: '829137', gambar: '/bsi.svg', atasNama: 'Rosalia Tsuraya' }
+    ]
   }
 }
