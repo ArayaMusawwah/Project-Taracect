@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Wayangs from '../Shared/Wayangs'
 import { data } from '@/data'

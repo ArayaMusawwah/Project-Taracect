@@ -13,8 +13,16 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '../ui/button'
 import { useRef } from 'react'
+import { getAllMessage } from '@/lib/database/message.action'
+import { IMessage } from '@/types'
 
-const ModalForm = ({ fetchMessages }: { fetchMessages: () => Promise<void> }) => {
+const ModalForm = ({
+  setMessages,
+  reFetch
+}: {
+  setMessages: React.Dispatch<React.SetStateAction<IMessage[]>>
+  reFetch: () => Promise<IMessage[]>
+}) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
 
@@ -26,17 +34,11 @@ const ModalForm = ({ fetchMessages }: { fetchMessages: () => Promise<void> }) =>
     }
 
     try {
-      const fetchData = await fetch('https://taratect.vercel.app/api/message/create', {
+      const res = await fetch('https://taratect.vercel.app/api/message/create', {
         method: 'POST',
-        headers: {
-          cache: 'no-store',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
         body: JSON.stringify(data)
       })
-
-      if (fetchData.status === 200) fetchMessages()
+      if (res.status === 200) reFetch()
     } catch (error) {
       console.log(error)
     }

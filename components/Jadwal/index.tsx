@@ -1,3 +1,5 @@
+'use client'
+
 import { formatDate } from '@/lib/utils'
 import Wayangs from '../Shared/Wayangs'
 import { data } from '@/data'

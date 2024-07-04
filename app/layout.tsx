@@ -4,6 +4,7 @@ import '@/styles/globals.css'
 import { data } from '@/data'
 import { toCapitalize } from '@/lib/utils'
 import { Toaster } from '@/components/ui/toaster'
+import { ActivatorProvider } from '@/context/Activator'
 
 const lobster = Lobster({
   subsets: ['latin'],
@@ -43,8 +44,10 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} ${sacramento.variable} ${lobster.variable} ${libreBaskerville.variable}`}
       >
-        {children}
-        <Toaster />
+        <ActivatorProvider>
+          {children}
+          <Toaster />
+        </ActivatorProvider>
       </body>
     </html>
   )

@@ -1,6 +1,8 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 
-function useMediaQuery(query: string) {
+export default function useMediaQuery(query: string) {
   // Menyimpan state untuk status media query
   const [matches, setMatches] = useState(false)
 
@@ -24,5 +26,3 @@ function useMediaQuery(query: string) {
 
   return matches
 }
-
-export default useMediaQuery

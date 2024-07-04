@@ -1,5 +1,6 @@
+import { IMessage } from '@/types'
 import { connectToDatabase } from '.'
-import Message, { IMessage } from './message.model'
+import Message from './message.model'
 
 export const createMessage = async (message: IMessage) => {
   try {

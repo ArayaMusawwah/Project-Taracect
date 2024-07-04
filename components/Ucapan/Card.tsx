@@ -1,4 +1,4 @@
-import { IMessage } from '@/lib/database/message.model'
+import { IMessage } from '@/types'
 import moment from 'moment'
 import { CiClock1 } from 'react-icons/ci'
 const Card = ({ nama, ucapan, date }: IMessage) => {

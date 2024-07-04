@@ -7,23 +7,17 @@ import Title from './Title'
 import { Suspense, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaEnvelopeOpen } from 'react-icons/fa'
+import { useActivatorContext } from '@/context/Activator'
 
-const Hero = ({
-  setIsOverflowHidden,
-  isOverflowHidden,
-  aboutRef
-}: {
-  setIsOverflowHidden: React.Dispatch<React.SetStateAction<boolean>>
-  isOverflowHidden: boolean
-  aboutRef: React.RefObject<HTMLDivElement>
-}) => {
+const Hero = () => {
+  const { setIsActive, isActive } = useActivatorContext()
   const [isHovered, setIsHovered] = useState(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleClick = () => {
-    setIsOverflowHidden(false)
+    setIsActive(false)
     setTimeout(() => {
-      aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
+      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
     }, 500)
   }
 
@@ -40,7 +34,7 @@ const Hero = ({
         <motion.button
           onClick={handleClick}
           className={`z-50 my-4 h-10 w-44 rounded-sm bg-main-accent2 text-white transition-all`}
-          style={isOverflowHidden ? { transform: 'scale(1)' } : { transform: 'scale(0)' }}
+          style={isActive ? { transform: 'scale(1)' } : { transform: 'scale(0)' }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
