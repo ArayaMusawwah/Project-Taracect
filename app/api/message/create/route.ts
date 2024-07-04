@@ -1,4 +1,5 @@
 import { createMessage } from '@/lib/database/message.action'
+import { revalidatePath } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const POST = async (req: NextRequest) => {
@@ -7,6 +8,7 @@ export const POST = async (req: NextRequest) => {
 
     if (!data) throw new Error('Data not found')
     await createMessage(data)
+    revalidatePath('/')
     return NextResponse.json({ message: 'Message created successfully' }, { status: 200 })
   } catch (error) {
     return NextResponse.json({ error: String(error) }, { status: 500 })

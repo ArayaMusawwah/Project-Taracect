@@ -15,14 +15,9 @@ import { Button } from '../ui/button'
 import { useRef } from 'react'
 import { getAllMessage } from '@/lib/database/message.action'
 import { IMessage } from '@/types'
+import { revalidatePath } from 'next/cache'
 
-const ModalForm = ({
-  setMessages,
-  reFetch
-}: {
-  setMessages: React.Dispatch<React.SetStateAction<IMessage[]>>
-  reFetch: () => Promise<IMessage[]>
-}) => {
+const ModalForm = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
 
@@ -34,11 +29,11 @@ const ModalForm = ({
     }
 
     try {
-      const res = await fetch('https://taratect.vercel.app/api/message/create', {
+      await fetch('https://taratect.vercel.app/api/message/create', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify(data)
       })
-      if (res.status === 200) reFetch()
     } catch (error) {
       console.log(error)
     }
