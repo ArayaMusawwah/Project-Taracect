@@ -13,9 +13,6 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '../ui/button'
 import { useRef } from 'react'
-import { getAllMessage } from '@/lib/database/message.action'
-import { IMessage } from '@/types'
-import { revalidatePath } from 'next/cache'
 
 const ModalForm = () => {
   const inputRef = useRef<HTMLInputElement>(null)
