@@ -8,6 +8,8 @@ import Penutup from '@/components/Penutup'
 import Footer from '@/components/Footer'
 import Story from '@/components/Story'
 import Ucapan from '@/components/Ucapan'
+import AudioPlayer from '@/components/AudioPlayer'
+import SnowfallContainer from '@/components/Shared/SnowfallContainer'
 
 const page = () => {
   return (
@@ -26,11 +28,13 @@ const page = () => {
         <Pengantin />
         <Jadwal />
         <Story />
-        <Ucapan />
+        {/* <Ucapan /> */}
 
         <Penutup />
       </main>
 
+      <SnowfallContainer />
+      <AudioPlayer />
       <Footer />
     </Container>
   )

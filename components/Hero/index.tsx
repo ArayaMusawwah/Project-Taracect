@@ -1,7 +1,5 @@
 'use client'
 
-import useMediaQuery from '@/hooks/useMediaQuery'
-import { Snowfall } from 'react-snowfall'
 import Wayangs from '../Shared/Wayangs'
 import Title from './Title'
 import { Suspense, useState } from 'react'
@@ -12,7 +10,6 @@ import { useActivatorContext } from '@/context/Activator'
 const Hero = () => {
   const { setIsActive, isActive } = useActivatorContext()
   const [isHovered, setIsHovered] = useState(false)
-  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleClick = () => {
     setIsActive(false)
@@ -51,7 +48,6 @@ const Hero = () => {
         </motion.button>
       </div>
 
-      <Snowfall snowflakeCount={isMobile ? 50 : 150} wind={[1, 5]} />
       <Wayangs isWayang isBoneka />
     </section>
   )

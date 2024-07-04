@@ -1,5 +1,4 @@
 'use client'
-
 import { useActivatorContext } from '@/context/Activator'
 
 const Container = ({ children }: { children: React.ReactNode }) => {
