@@ -18,6 +18,7 @@ const ModalForm = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
 
+  /* TODO: sweetAlert */
   const handleSubmit = async () => {
     const data = {
       nama: inputRef.current?.value,
