@@ -22,11 +22,14 @@ import {
 } from '@/components/ui/select'
 import { ToastOptions, toast } from 'react-toastify'
 import axios from 'axios'
-import { IMessage } from '@/types'
+import { useSearchParams } from 'next/navigation'
 
 const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
+  const searchParams = useSearchParams()
+  const namaTamu = searchParams.get('to')
+
   const [rsvp, setRsvp] = useState<string>()
 
   const toaster = (text: string, options = 'success') => {
@@ -50,24 +53,41 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
         break
     }
   }
-  /* TODO: toast after submit */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    const nama = inputRef.current?.value
+    const ucapan = ucapanRef.current?.value
+
     const data = {
-      nama: inputRef.current?.value,
-      ucapan: ucapanRef.current?.value,
+      nama,
+      ucapan,
       date: new Date()
     }
 
+    const formData = new FormData()
+    formData.append('nama', String(nama))
+    formData.append('kehadiran', String(rsvp))
+
     try {
       await axios
-        .post('https://taratect.vercel.app/api/messages/create', data)
+        .post(`https://taratect.vercel.app/api/messages/create`, data)
         .then(() => {
           toaster('Pesan Terkirim!')
           fetchData()
         })
         .catch(() => toaster('Pesan Gagal Terkirim!', 'error'))
+
+      await axios.post(
+        'https://script.google.com/macros/s/AKfycbz92-YitbN3RdEZ2BnwD1Wy6X21BRIvXzs0UXyylApR8tSBmWWVUuA-cVaYJbN3RG821w/exec',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          maxRedirects: 0
+        }
+      )
     } catch (error) {
       console.log(error)
     }
@@ -95,6 +115,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
                 type="text"
                 placeholder="Nama..."
                 name="nama"
+                defaultValue={namaTamu || ''}
                 ref={inputRef}
                 required
                 className="w-full border-2 border-main-accent3 bg-transparent px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400"
@@ -106,7 +127,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
                 required
                 className="w-full resize-none border-2 border-main-accent3 bg-transparent px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400"
               />
-              <Select onValueChange={setRsvp}>
+              <Select onValueChange={setRsvp} required>
                 <SelectTrigger className="w-full rounded-none border-2 border-main-accent3 bg-transparent focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400">
                   <SelectValue placeholder="Konfirmasi Kehadiran" />
                 </SelectTrigger>

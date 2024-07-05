@@ -18,7 +18,7 @@ const About = () => {
         alt="pengantin"
         width={180}
         height={400}
-        className="absolute top-1/4"
+        className="absolute top-1/4 z-50"
       />
       <div className="relative z-[60] pt-10">
         <div className="mb-4">

@@ -1,5 +1,6 @@
 import { data } from '@/data'
 import Wayangs from '../Shared/Wayangs'
+import Image from 'next/image'
 
 const Story = () => {
   return (
@@ -8,6 +9,13 @@ const Story = () => {
         className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
+        <Image
+          src={'/mega-mendung.png'}
+          alt=""
+          width={180}
+          height={500}
+          className="absolute -right-20 top-0 z-20"
+        />
         <div className="relative flex h-[50vh] w-full flex-col items-center justify-center gap-2 bg-main-accent3 py-4">
           <h1 className="my-4 text-center font-lobster text-4xl tracking-wide">Our Story</h1>
           <p className="font-libreBaskerville">{data.mempelai.story}</p>

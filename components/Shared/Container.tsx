@@ -1,6 +1,6 @@
 'use client'
 import { useActivatorContext } from '@/context/Activator'
-import useMediaQuery from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@react-hook/media-query'
 import { Snowfall } from 'react-snowfall'
 
 const Container = ({ children }: { children: React.ReactNode }) => {
@@ -15,7 +15,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
 
       {!isActive && (
         <div className="fixed inset-0">
-          <Snowfall snowflakeCount={isMobile ? 50 : 150} wind={[1, 5]} />
+          <Snowfall snowflakeCount={isMobile ? 25 : 125} />
         </div>
       )}
     </div>

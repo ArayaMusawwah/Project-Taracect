@@ -5,7 +5,7 @@ import Wayangs from '../Shared/Wayangs'
 import { data } from '@/data'
 import CardDate from './CardDate'
 import Image from 'next/image'
-import useMediaQuery from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@react-hook/media-query'
 
 const Jadwal = () => {
   const jadwalResepsi = formatDate(data.resepsi.tanggal)
@@ -66,16 +66,16 @@ const Jadwal = () => {
       <Image
         src={'/newWayang.png'}
         alt="wayang"
-        width={!isMobile ? 200 : 150}
+        width={!isMobile ? 200 : 140}
         height={200}
-        className="absolute -bottom-10 -right-16 z-20 rotate-12 sm:-bottom-14 sm:right-36"
+        className="absolute -bottom-10 -right-16 z-20 -rotate-12 sm:-bottom-14 sm:right-36 md:rotate-12"
       />
       <Image
         src={'/newWayang.png'}
         alt="wayang"
-        width={!isMobile ? 200 : 150}
+        width={!isMobile ? 200 : 140}
         height={200}
-        className="absolute -bottom-10 -left-16 z-20 -rotate-12 sm:-bottom-14 sm:left-36"
+        className="absolute -bottom-10 -left-16 z-20 rotate-12 sm:-bottom-14 sm:left-36 md:-rotate-12"
       />
 
       <Wayangs />

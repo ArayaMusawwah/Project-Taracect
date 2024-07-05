@@ -32,10 +32,10 @@ const KadoDigital = () => {
   return (
     <section className="relative flex min-h-lvh w-full items-center justify-center overflow-hidden text-center text-black">
       <div
-        className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-5xl"
+        className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 sm:max-w-5xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
-        <div className="sm:pt-18 relative h-[82vh] w-full bg-main-accent3 px-4 py-20 pt-8 sm:h-[70vh] sm:px-10">
+        <div className="sm:pt-18 relative h-[82vh] w-full bg-main-accent3 px-4 pt-4 sm:h-[70vh] sm:px-10">
           <h2 className="mb-2 font-lobster text-3xl text-black sm:text-4xl">Kado Digital</h2>
           <p className="text-balance font-libreBaskerville text-xs sm:text-sm">
             Doa restu Anda merupakan karunia terindah bagi kami. Dan jika memberi adalah ungkapan

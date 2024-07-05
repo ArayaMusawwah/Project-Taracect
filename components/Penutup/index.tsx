@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Wayangs from '../Shared/Wayangs'
 import { data } from '@/data'
-import useMediaQuery from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@react-hook/media-query'
 
 const Penutup = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')

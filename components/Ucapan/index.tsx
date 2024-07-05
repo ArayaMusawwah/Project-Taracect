@@ -3,9 +3,9 @@
 import axios from 'axios'
 import CardContainer from './CardContainer'
 import TheWayang from './TheWayang'
-import { getAllMessage } from '@/lib/database/message.action'
 import { useEffect, useState } from 'react'
 import { IMessage } from '@/types'
+import MegaMendung from './MegaMendung'
 
 const Ucapan = () => {
   const [data, setData] = useState<IMessage[]>([])
@@ -28,6 +28,7 @@ const Ucapan = () => {
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
         <CardContainer data={data} fetchData={fetchData} />
+        <MegaMendung />
       </div>
       <TheWayang />
     </section>
