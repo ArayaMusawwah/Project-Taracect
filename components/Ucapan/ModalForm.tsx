@@ -22,8 +22,9 @@ import {
 } from '@/components/ui/select'
 import { ToastOptions, toast } from 'react-toastify'
 import axios from 'axios'
+import { IMessage } from '@/types'
 
-const ModalForm = () => {
+const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
   const [rsvp, setRsvp] = useState<string>()
@@ -62,7 +63,10 @@ const ModalForm = () => {
     try {
       await axios
         .post('https://taratect.vercel.app/api/messages/create', data)
-        .then(() => toaster('Pesan Terkirim!'))
+        .then(() => {
+          toaster('Pesan Terkirim!')
+          fetchData()
+        })
         .catch(() => toaster('Pesan Gagal Terkirim!', 'error'))
     } catch (error) {
       console.log(error)
