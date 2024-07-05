@@ -1,6 +1,7 @@
 import { IMessage } from '@/types'
 import ModalForm from './ModalForm'
 import Card from './Card'
+import { Suspense } from 'react'
 
 const CardContainer = ({
   data,
@@ -15,7 +16,9 @@ const CardContainer = ({
 
       <div className="space-y-1">
         <p className="text-sm italic">Berniat Untuk Mengirim Ucapan & Doa?</p>
-        <ModalForm fetchData={fetchData} />
+        <Suspense>
+          <ModalForm fetchData={fetchData} />
+        </Suspense>
       </div>
 
       <p className="my-2 w-full text-right text-sm font-light italic">
