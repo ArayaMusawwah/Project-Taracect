@@ -48,8 +48,8 @@ const KadoDigital = () => {
                 <Image
                   src={rekening.gambar}
                   alt={rekening.gambar}
-                  width={20}
-                  height={20}
+                  width={100}
+                  height={100}
                   className="mx-auto mb-4 w-2/3 rounded-lg border-2 border-main-accent3/50 object-center"
                 />
                 <p className="text-sm font-light">No. Rekening: {rekening.nomor}</p>

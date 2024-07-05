@@ -28,7 +28,7 @@ const page = () => {
         <Pengantin />
         <Jadwal />
         <Story />
-        {/* <Ucapan /> */}
+        <Ucapan />
         <KadoDigital />
         <Penutup />
       </main>
