@@ -61,7 +61,7 @@ const ModalForm = () => {
 
     try {
       await axios
-        .post('/api/messages/create', data)
+        .post('https://taratect.vercel.app/api/messages/create', data)
         .then(() => toaster('Pesan Terkirim!'))
         .catch(() => toaster('Pesan Gagal Terkirim!', 'error'))
     } catch (error) {
