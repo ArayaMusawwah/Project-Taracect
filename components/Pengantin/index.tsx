@@ -1,5 +1,25 @@
 import { data } from '@/data'
 import Wayangs from '../Shared/Wayangs'
+import { MotionDiv, MotionH2, MotionP } from '../Shared/MotionTag'
+import { Variants } from 'framer-motion'
+
+const parentVariants: Variants = {
+  initial: { opacity: 0, y: -100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'linear', staggerChildren: 0.5, staggerDirection: -1 }
+  }
+}
+
+const childVariants: Variants = {
+  initial: { opacity: 0, y: -100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'linear' }
+  }
+}
 
 const Pengantin = () => {
   return (
@@ -9,35 +29,68 @@ const Pengantin = () => {
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
         <div className="h-[83vh] w-full bg-main-accent3 py-24 sm:py-24">
-          <h2 className="font-playwriteRo text-xl sm:font-semibold">Assalamualaikum wr wb</h2>
-          <p className="my-3 text-pretty px-4 text-center max-sm:text-sm">
-            Dengan izin dan ridhlo Allah Subhanallah Wa Ta&apos;ala, insyaAllah kami akan
-            melaksanakan acara pernikahan kami:
-          </p>
+          <MotionDiv
+            initial={{ opacity: 0, y: -100 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.8, ease: 'linear', delay: 1.5 }
+            }}
+            viewport={{ once: true }}
+          >
+            <MotionH2
+              className="font-playwriteRo text-xl sm:font-semibold"
+              variants={childVariants}
+              initial={'initial'}
+              whileInView={'animate'}
+              viewport={{ once: true }}
+            >
+              Assalamualaikum wr wb
+            </MotionH2>
+            <MotionP
+              className="my-3 text-pretty px-4 text-center max-sm:text-sm"
+              variants={childVariants}
+              initial={'initial'}
+              whileInView={'animate'}
+              viewport={{ once: true }}
+            >
+              Dengan izin dan ridhlo Allah Subhanallah Wa Ta&apos;ala, insyaAllah kami akan
+              melaksanakan acara pernikahan kami:
+            </MotionP>
+          </MotionDiv>
 
-          <div className="mt-10 flex flex-col px-4">
-            <div>
+          <MotionDiv
+            className="mt-10 flex flex-col px-4"
+            variants={parentVariants}
+            initial={'initial'}
+            whileInView={'animate'}
+            viewport={{ once: true }}
+          >
+            <MotionDiv variants={childVariants}>
               <h3 className="font-sacramento text-5xl capitalize sm:text-6xl">
                 {data.mempelai.perempuan.nama}
               </h3>
               <p>Putri dari</p>
               <p className="capitalize">{data.mempelai.perempuan.ortu}</p>
-            </div>
+            </MotionDiv>
 
-            <div className="mx-auto my-2 flex w-96 max-w-[150px] items-center space-x-4 sm:my-5">
+            <MotionDiv
+              className="mx-auto my-2 flex w-96 max-w-[150px] items-center space-x-4 sm:my-5"
+              variants={childVariants}
+            >
               <span className="bg block h-[2px] w-full bg-black" />
               <span className="font-sacramento text-5xl">&amp;</span>
               <span className="bg block h-[2px] w-full bg-black" />
-            </div>
+            </MotionDiv>
 
-            <div>
+            <MotionDiv variants={childVariants}>
               <h3 className="font-sacramento text-5xl capitalize sm:text-6xl">
                 {data.mempelai.laki.nama}
               </h3>
               <p>Putra dari</p>
               <p className="capitalize">{data.mempelai.laki.ortu}</p>
-            </div>
-          </div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </div>
 
