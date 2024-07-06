@@ -28,7 +28,7 @@ const AudioPlayer = () => {
         animate={{ opacity: 1, scale: 1, transition: { delay: 0.3 } }}
         exit={{ opacity: 0, scale: 0 }}
       >
-        <audio loop ref={audioRef}>
+        <audio loop ref={audioRef} autoPlay={!isActive}>
           <source src="/audio/backsound.mp3" type="audio/mpeg" />
         </audio>
         {isPlaying ? (

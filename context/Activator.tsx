@@ -12,7 +12,7 @@ type IActivator = {
 const ActivatorContext = createContext<IActivator | undefined>(undefined)
 
 export const ActivatorProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isActive, setIsActive] = useState<boolean>(false)
+  const [isActive, setIsActive] = useState<boolean>(true)
   const aboutRef = useRef<HTMLDivElement>(null)
 
   return (

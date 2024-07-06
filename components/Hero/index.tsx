@@ -40,13 +40,12 @@ const Hero = () => {
               y: 0,
               opacity: 1,
               scale: 1,
-              transition: { duration: 0.5, ease: 'linear', delay: 1 }
+              transition: { duration: 0.5, ease: 'linear', delay: 2 }
             },
             visible: { scale: 0, y: 0, transition: { duration: 0.5, ease: 'linear' } }
           }}
         >
-          asu
-          {/*<AnimatePresence>
+          <AnimatePresence>
             {isHovered ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
@@ -68,7 +67,7 @@ const Hero = () => {
                 <span>Buka Undangan</span>
               </motion.div>
             )}
-          </AnimatePresence> */}
+          </AnimatePresence>
         </motion.button>
       </div>
 
