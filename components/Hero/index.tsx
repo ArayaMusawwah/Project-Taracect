@@ -28,14 +28,25 @@ const Hero = () => {
           <Title />
         </Suspense>
 
-        <button
+        <motion.button
           onClick={handleClick}
-          className={`z-50 my-4 h-10 w-44 rounded-sm bg-main-accent2 text-white transition-all`}
-          style={isActive ? { transform: 'scale(1)' } : { transform: 'scale(0)' }}
+          className={`z-50 my-4 h-10 w-44 rounded-sm bg-main-accent2 text-white`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          initial={{ y: 50, opacity: 0 }}
+          animate={isActive ? 'active' : 'visible'}
+          variants={{
+            active: {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              transition: { duration: 0.5, ease: 'linear', delay: 1 }
+            },
+            visible: { scale: 0, y: 0, transition: { duration: 0.5, ease: 'linear' } }
+          }}
         >
-          <AnimatePresence>
+          asu
+          {/*<AnimatePresence>
             {isHovered ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
@@ -57,8 +68,8 @@ const Hero = () => {
                 <span>Buka Undangan</span>
               </motion.div>
             )}
-          </AnimatePresence>
-        </button>
+          </AnimatePresence> */}
+        </motion.button>
       </div>
 
       <Wayangs isWayang isBoneka />

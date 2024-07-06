@@ -4,7 +4,6 @@ import '@/styles/globals.css'
 import { data } from '@/data'
 import { toCapitalize } from '@/lib/utils'
 import { ActivatorProvider } from '@/context/Activator'
-import { ToastContainer } from 'react-toastify'
 import ToastProvider from '@/components/Shared/ToastProvider'
 
 const lobster = Lobster({

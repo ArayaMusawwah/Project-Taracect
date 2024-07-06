@@ -88,7 +88,11 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'spin-slow': 'spin 5s linear infinite'
+        'spin-slow': 'spin 5s linear infinite',
+        'wave-slow-right': 'waveRight 10s infinite ease-in-out',
+        'wave-slow-left': 'waveLeft 10s infinite ease-in-out',
+        'wave-top-bottom': 'waveTopToBottom 10s infinite ease-in-out',
+        'wave-bottom-top': 'waveBottomToTop 10s infinite ease-in-out'
       }
     }
   },

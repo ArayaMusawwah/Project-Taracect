@@ -41,9 +41,13 @@
     --scrollbar-bg-color: #422a27;
   }
 
+  * {
+    @apply border-border;
+  }
   body {
     scrollbar-width: var(--scrollbar-width);
     scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
+    @apply bg-background text-foreground;
   }
   body:hover {
     scrollbar-width: var(--scrollbar-width);
@@ -109,14 +113,55 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
-@media (min-width: 768px) {
+
+@keyframes waveLeft {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
+  25% {
+    transform: translateX(-5%) rotate(-5deg) translateY(-3%);
+  }
+  75% {
+    transform: translateX(5%) rotate(5deg) translateY(3%);
+  }
+  100% {
+    transform: translateX(0%) translateY(0%);
+  }
+}
+@keyframes waveRight {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
+  25% {
+    transform: translateX(5%) rotate(5deg) translateY(3%);
+  }
+  75% {
+    transform: translateX(-5%) rotate(-5deg) translateY(-3%);
+  }
+  100% {
+    transform: translateX(0%) translateY(0%);
+  }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@keyframes waveTopToBottom {
+  0% {
+    transform: translateY(0%) rotate(180deg);
   }
-  body {
-    @apply bg-background text-foreground;
+  50% {
+    transform: translateY(-5%) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0%) rotate(180deg);
+  }
+}
+@keyframes waveBottomToTop {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0%);
   }
 }
