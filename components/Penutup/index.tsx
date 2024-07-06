@@ -4,15 +4,40 @@ import Image from 'next/image'
 import Wayangs from '../Shared/Wayangs'
 import { data } from '@/data'
 import { useMediaQuery } from '@react-hook/media-query'
+import { MotionDiv } from '../Shared/MotionTag'
+
+const variants = {
+  hidden: { opacity: 0, y: 100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8
+    }
+  }
+}
+
+const parentVariants = {
+  initial: { opacity: 0, y: 100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'linear', staggerChildren: 0.8 }
+  }
+}
 
 const Penutup = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden text-center text-black">
-      <div
+      <MotionDiv
         className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-3xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
+        variants={parentVariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
       >
         <div className="relative grid h-[50vh] w-full grid-rows-2 gap-2 bg-main-accent3 py-4 sm:h-[60vh]">
           <div className="relative">
@@ -61,7 +86,7 @@ const Penutup = () => {
             </p>
           </div>
         </div>
-      </div>
+      </MotionDiv>
 
       <Wayangs isBoneka />
     </section>

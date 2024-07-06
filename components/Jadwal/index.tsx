@@ -6,6 +6,27 @@ import { data } from '@/data'
 import CardDate from './CardDate'
 import Image from 'next/image'
 import { useMediaQuery } from '@react-hook/media-query'
+import { MotionDiv, MotionP } from '../Shared/MotionTag'
+
+const variants = {
+  hidden: { opacity: 0, y: 100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1
+    }
+  }
+}
+
+const parentVariants = {
+  initial: { opacity: 0, y: 100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'linear', staggerChildren: 1 }
+  }
+}
 
 const Jadwal = () => {
   const jadwalResepsi = formatDate(data.resepsi.tanggal)
@@ -18,13 +39,22 @@ const Jadwal = () => {
         className="absolute z-10 w-full max-w-[22rem] rounded-lg bg-main-accent3/50 p-2 sm:max-w-5xl"
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
       >
-        <div className="sm:pt-18 relative h-[82vh] w-full bg-main-accent3 px-4 py-20 pt-12 sm:h-[70vh] sm:px-10">
-          <p className="mx-auto max-w-2xl text-pretty text-center text-sm leading-4 sm:text-lg">
+        <MotionDiv
+          className="sm:pt-18 relative h-[82vh] w-full bg-main-accent3 px-4 py-20 pt-12 sm:h-[70vh] sm:px-10"
+          variants={parentVariants}
+          initial="hidden"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <MotionP
+            className="mx-auto max-w-2xl text-pretty text-center text-sm leading-4 sm:text-lg"
+            variants={variants}
+          >
             Tentunya dengan penuh rasa hormat, kami mengundang kehadiran Bapak/Ibu/Saudara/i dalam
             acara pernikahan kami yang akan dilaksanakan pada:
-          </p>
+          </MotionP>
 
-          <div className="mt-4 flex flex-col gap-4 sm:flex-row">
+          <MotionDiv className="mt-4 flex flex-col gap-4 sm:flex-row" variants={variants}>
             <CardDate
               title="Akad Nikah"
               bulan={jadwalAkad.bulan}
@@ -45,8 +75,8 @@ const Jadwal = () => {
               lokasi={data.resepsi.alamat}
               maps={data.resepsi.maps}
             />
-          </div>
-        </div>
+          </MotionDiv>
+        </MotionDiv>
 
         <Image
           src={'/mega-mendung.png'}

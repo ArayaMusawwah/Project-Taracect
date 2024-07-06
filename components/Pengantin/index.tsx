@@ -8,7 +8,7 @@ const parentVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'linear', staggerChildren: 0.5, staggerDirection: -1 }
+    transition: { duration: 0.5, ease: 'linear', staggerChildren: 0.5, staggerDirection: -1 }
   }
 }
 
@@ -17,7 +17,7 @@ const childVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'linear' }
+    transition: { duration: 0.5, ease: 'linear' }
   }
 }
 
@@ -34,7 +34,7 @@ const Pengantin = () => {
             whileInView={{
               opacity: 1,
               y: 0,
-              transition: { duration: 0.8, ease: 'linear', delay: 1.5 }
+              transition: { duration: 0.5, ease: 'linear', delay: 1 }
             }}
             viewport={{ once: true }}
           >

@@ -1,6 +1,7 @@
 import { IMessage } from '@/types'
 import moment from 'moment'
 import { CiClock1 } from 'react-icons/ci'
+
 const Card = ({ nama, ucapan, date }: IMessage) => {
   return (
     <div className="mx-1 rounded-md bg-white px-2 py-1">
