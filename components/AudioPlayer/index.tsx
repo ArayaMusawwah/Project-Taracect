@@ -12,6 +12,7 @@ const AudioPlayer = () => {
 
   const handlePlayPause = () => {
     isPlaying ? audioRef.current?.pause() : audioRef.current?.play()
+    if (audioRef.current) audioRef.current.volume = 0.3
     setIsPlaying(!isPlaying)
   }
 
