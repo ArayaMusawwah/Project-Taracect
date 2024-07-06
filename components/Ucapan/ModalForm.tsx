@@ -23,10 +23,14 @@ import {
 import { ToastOptions, toast } from 'react-toastify'
 import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
+import { VscLoading } from 'react-icons/vsc'
 
 const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const ucapanRef = useRef<HTMLTextAreaElement>(null)
+
   const searchParams = useSearchParams()
   const namaTamu = searchParams.get('to')
 
@@ -55,7 +59,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
   }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
+    if (!inputRef.current || !ucapanRef.current || !rsvp) return
     const nama = inputRef.current?.value
     const ucapan = ucapanRef.current?.value
 
@@ -70,6 +74,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
     formData.append('kehadiran', String(rsvp))
 
     try {
+      setIsLoading(true)
       await axios
         .post(`https://taratect.vercel.app/api/messages/create`, data)
         .then(() => {
@@ -77,6 +82,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
           fetchData()
         })
         .catch(() => toaster('Pesan Gagal Terkirim!', 'error'))
+        .finally(() => setIsLoading(false))
 
       await axios.post(
         'https://script.google.com/macros/s/AKfycbz92-YitbN3RdEZ2BnwD1Wy6X21BRIvXzs0UXyylApR8tSBmWWVUuA-cVaYJbN3RG821w/exec',
@@ -96,15 +102,21 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="rounded-lg bg-main-accent1 px-10 py-1 text-white">
-          Buat Pesan <FaEnvelope className="ms-3 inline" />
-        </Button>
+        {isLoading ? (
+          <Button className="rounded-lg bg-main-accent1 px-10 py-1 text-white" disabled={isLoading}>
+            <VscLoading className="inline animate-spin text-2xl" />
+          </Button>
+        ) : (
+          <Button className="rounded-lg bg-main-accent1 px-10 py-1 text-white">
+            Buat Pesan <FaEnvelope className="ms-3 inline" />
+          </Button>
+        )}
       </AlertDialogTrigger>
 
       <AlertDialogContent className="rounded-lg border-2 border-main-accent2 bg-main-accent1 shadow-xl shadow-main-accent2/50">
         <AlertDialogHeader>
           <div className="w-full space-y-1 rounded-lg bg-main-accent1 py-4">
-            <AlertDialogTitle className="mb-4 text-center font-lobster text-lg font-light text-white sm:text-2xl">
+            <AlertDialogTitle className="mb-4 text-center font-lobster text-xl font-light text-white sm:text-2xl">
               Berikan Ucapan & Doa Kepada Kami
             </AlertDialogTitle>
             <form
@@ -131,17 +143,19 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
                 <SelectTrigger className="w-full rounded-none border-2 border-main-accent3 bg-transparent focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400">
                   <SelectValue placeholder="Konfirmasi Kehadiran" />
                 </SelectTrigger>
-                <SelectContent className="!focus:ring-none bg-main-accent2 focus:bg-main-accent6">
+                <SelectContent
+                  className="!focus:ring-none bg-main-accent2 focus:bg-main-accent6"
+                  side="top"
+                >
                   <SelectItem value="hadir">Hadir</SelectItem>
                   <SelectItem value="tidak_hadir">Tidak Hadir</SelectItem>
                 </SelectContent>
               </Select>
-
-              <AlertDialogFooter className="flex justify-center">
+              <AlertDialogFooter>
                 <AlertDialogCancel className="bg-main-accent6 text-black">Batal</AlertDialogCancel>
-                <AlertDialogAction className="bg-main-accent5 text-slate-50" type="submit">
+                <Button className="bg-main-accent5 text-slate-50" type="submit">
                   Kirim
-                </AlertDialogAction>
+                </Button>
               </AlertDialogFooter>
             </form>
           </div>
