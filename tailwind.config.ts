@@ -91,8 +91,8 @@ const config = {
         'spin-slow': 'spin 5s linear infinite',
         'wave-slow-right': 'waveRight 10s infinite ease-in-out',
         'wave-slow-left': 'waveLeft 10s infinite ease-in-out',
-        'wave-top-bottom': 'waveTopToBottom 10s infinite ease-in-out',
-        'wave-bottom-top': 'waveBottomToTop 10s infinite ease-in-out'
+        'wave-top-bottom': 'waveTopToBottom 15s infinite ease-in-out',
+        'wave-bottom-top': 'waveBottomToTop 15s infinite ease-in-out'
       }
     }
   },

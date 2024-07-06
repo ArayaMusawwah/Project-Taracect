@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import TheCountdown from 'react-countdown'
 import { data } from '@/data'
+import { Variants } from 'framer-motion'
+import { MotionDiv } from '../Shared/MotionTag'
 
 interface rendererProps {
   days: number
@@ -38,7 +40,7 @@ const Renderer = ({ days, hours, minutes, seconds, completed }: rendererProps) =
   }
 }
 
-const Countdown = () => {
+const Countdown = ({ variants }: { variants: Variants }) => {
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -46,9 +48,9 @@ const Countdown = () => {
   }, [])
 
   return (
-    <div className="my-4">
+    <MotionDiv className="my-4" variants={variants}>
       {isClient && <TheCountdown date={Date.parse(data.resepsi.tanggal)} renderer={Renderer} />}
-    </div>
+    </MotionDiv>
   )
 }
 export default Countdown
