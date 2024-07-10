@@ -38,6 +38,7 @@ const CardContainer = ({
         initial="initial"
         whileInView="animate"
         viewport={{ once: true }}
+        className='h-full w-full overflow-hidden'
       >
         <MotionH1 className="mb-4 font-lobster text-3xl font-bold" variants={variants}>
           Ucapan & Doa
@@ -54,7 +55,7 @@ const CardContainer = ({
           Total Ucapan: {data.length}
         </p>
         <MotionDiv
-          className="flex max-h-[70%] flex-col gap-4 overflow-y-scroll pb-10"
+          className="flex max-h-[70%] flex-col gap-4 overflow-scroll pb-10"
           variants={variants}
         >
           {data.length > 0 && data.map((message) => <Card key={message._id} {...message} />)}

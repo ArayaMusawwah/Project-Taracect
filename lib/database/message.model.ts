@@ -1,3 +1,5 @@
+"use server"
+
 import { IMessage } from '@/types'
 import mongoose, { Schema, models } from 'mongoose'
 

@@ -1,3 +1,5 @@
+"use server"
+
 import { IMessage } from '@/types'
 import { connectToDatabase } from '.'
 import Message from './message.model'

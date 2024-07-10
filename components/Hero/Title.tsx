@@ -31,7 +31,7 @@ const Title = () => {
         {data.mempelai.keduaMempelai}
       </motion.h1>
       <motion.p variants={childVariant}>Kepada Bapak/Ibu/Saudara/i Yth: </motion.p>
-      <motion.h2 className="mt-4 text-3xl font-semibold" variants={childVariant}>
+      <motion.h2 className="mt-4 text-3xl font-semibold capitalize" variants={childVariant}>
         {replaceDanToAmpersand(tamu || 'Tamu Undangan')}
       </motion.h2>
       <motion.p className="text-lg" variants={childVariant}>

@@ -153,9 +153,9 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
               </Select>
               <AlertDialogFooter>
                 <AlertDialogCancel className="bg-main-accent6 text-black">Batal</AlertDialogCancel>
-                <Button className="bg-main-accent5 text-slate-50" type="submit">
+                <AlertDialogAction className="bg-main-accent5 text-slate-50" type="submit">
                   Kirim
-                </Button>
+                </AlertDialogAction>
               </AlertDialogFooter>
             </form>
           </div>
