@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { getAllMessage } from './database/message.action'
+import { getAllMessage } from './database/actions/message.action'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

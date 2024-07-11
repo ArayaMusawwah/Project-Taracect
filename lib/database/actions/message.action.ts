@@ -1,8 +1,8 @@
-"use server"
+'use server'
 
 import { IMessage } from '@/types'
-import { connectToDatabase } from '.'
-import Message from './message.model'
+import { connectToDatabase } from '..'
+import Message from '../models/message.model'
 
 export const createMessage = async (message: IMessage) => {
   try {

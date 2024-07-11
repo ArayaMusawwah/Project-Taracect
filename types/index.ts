@@ -4,3 +4,10 @@ export interface IMessage {
   ucapan: string
   date: Date
 }
+
+export interface IInvitation {
+  _id?: string
+  name: string
+  url: string
+  isCompleted: boolean
+}
