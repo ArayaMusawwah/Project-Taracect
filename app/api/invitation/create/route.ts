@@ -6,7 +6,7 @@ export const POST = async (req: NextRequest) => {
   const data = await req.json()
 
   try {
-    await createInvitation(data).then(() => revalidatePath('/buat-undangan'))
+    await createInvitation(data)
 
     return NextResponse.json({ message: 'Invitation created successfully', data }, { status: 200 })
   } catch (error) {

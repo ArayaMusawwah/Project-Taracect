@@ -27,7 +27,7 @@ const TheForm = ({ setIsEditing, setTemplate, inputRef, textareaRef, isEditing }
     const url = `https://taratect.vercel.app/?to=${encodeURIComponent(text as string)}`
 
     try {
-      await axios.post('/api/invitation/create', {
+      await axios.post('https://taratect.vercel.app/api/invitation/create', {
         name: text as string,
         url,
         isCompleted: false

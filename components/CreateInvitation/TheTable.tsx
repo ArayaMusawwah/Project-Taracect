@@ -36,7 +36,7 @@ const TheTable = ({ template }: { template: string }) => {
   console.log('TheTable ~ invitations=>', invitations)
 
   const fetchInvitations = async () => {
-    const res = await axios.get('/api/invitation')
+    const res = await axios.get('https://taratect.vercel.app/api/invitation')
     setInvitations(res.data.data)
   }
 
