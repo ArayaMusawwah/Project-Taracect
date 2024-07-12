@@ -27,3 +27,12 @@ export const getAllInvitation = async () => {
     console.log(err)
   }
 }
+
+export const deleteInvitation = async (id: string) => {
+  try {
+    await connectToDatabase()
+    await Invitation.findByIdAndDelete(id)
+  } catch (error) {
+    console.log(error)
+  }
+}

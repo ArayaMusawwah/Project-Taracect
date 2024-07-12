@@ -1,10 +1,11 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import TheForm from './TheForm'
 import TheTable from './TheTable'
 import { IInvitation } from '@/types'
+import axios from 'axios'
 
 const Main = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -15,6 +16,15 @@ const Main = () => {
 
   const [invitations, setInvitations] = useState<IInvitation[]>([])
 
+  const fetchInvitations = async () => {
+    const res = await axios.get('https://taratect.vercel.app/api/invitation')
+    setInvitations(res.data.data)
+  }
+
+  useEffect(() => {
+    fetchInvitations()
+  }, [setInvitations])
+
   return (
     <main className="w-full max-w-sm rounded-lg bg-stone-200 p-5 text-center shadow-lg shadow-stone-500/30 md:max-w-4xl">
       <TheForm
@@ -23,9 +33,10 @@ const Main = () => {
         isEditing={isEditing}
         setIsEditing={setIsEditing}
         setTemplate={setTemplate}
+        fetchInvitations={fetchInvitations}
       />
 
-      <TheTable template={template} />
+      <TheTable template={template} setInvitations={setInvitations} invitations={invitations} />
     </main>
   )
 }

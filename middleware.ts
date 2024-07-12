@@ -1,4 +1,16 @@
-import { NextResponse, type NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+export function middleware(req: NextRequest) {
+  if (req.url.includes('?key=354')) return NextResponse.next()
+  return NextResponse.redirect(new URL('/', req.url))
+}
+
+export const config = {
+  matcher: '/buat-undangan/:path*'
+}
+
+/* import { NextResponse, type NextRequest } from 'next/server'
 
 const corsOptions: {
   allowedMethods: string[]
@@ -40,3 +52,4 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: '/api/:path*'
 }
+ */

@@ -3,16 +3,25 @@ import { Button } from '../ui/button'
 import { FaInfoCircle } from 'react-icons/fa'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import axios from 'axios'
+import { IInvitation } from '@/types'
 
 interface Props {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
   setTemplate: React.Dispatch<React.SetStateAction<string>>
+  fetchInvitations: () => Promise<void>
   inputRef: React.RefObject<HTMLInputElement>
   textareaRef: React.RefObject<HTMLTextAreaElement>
   isEditing: boolean
 }
 
-const TheForm = ({ setIsEditing, setTemplate, inputRef, textareaRef, isEditing }: Props) => {
+const TheForm = ({
+  setIsEditing,
+  setTemplate,
+  fetchInvitations,
+  inputRef,
+  textareaRef,
+  isEditing
+}: Props) => {
   const handleCreateTemplate = (e: React.FormEvent) => {
     e.preventDefault()
     setIsEditing((prev) => !prev)
@@ -27,11 +36,15 @@ const TheForm = ({ setIsEditing, setTemplate, inputRef, textareaRef, isEditing }
     const url = `https://taratect.vercel.app/?to=${encodeURIComponent(text as string)}`
 
     try {
-      await axios.post('https://taratect.vercel.app/api/invitation/create', {
-        name: text as string,
-        url,
-        isCompleted: false
-      })
+      await axios
+        .post('https://taratect.vercel.app/api/invitation/create', {
+          name: text as string,
+          url,
+          isCompleted: false
+        })
+        .then(() => {
+          fetchInvitations()
+        })
     } catch (error) {
       console.log(error)
     }
@@ -81,7 +94,7 @@ const TheForm = ({ setIsEditing, setTemplate, inputRef, textareaRef, isEditing }
         <textarea
           ref={textareaRef}
           placeholder="buat template pesan (tidak wajib)"
-          className="w-full rounded-md px-4 py-1 disabled:bg-gray-300"
+          className="w-full rounded-md px-4 py-1 disabled:bg-gray-300 disabled:text-gray-500"
           disabled={!isEditing}
         />
         {isEditing ? (

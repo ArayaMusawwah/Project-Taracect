@@ -31,24 +31,54 @@ import { useEffect, useState } from 'react'
 import { IInvitation } from '@/types'
 import axios from 'axios'
 
-const TheTable = ({ template }: { template: string }) => {
-  const [invitations, setInvitations] = useState<IInvitation[]>([])
-  console.log('TheTable ~ invitations=>', invitations)
+interface Props {
+  template: string
+  setInvitations: React.Dispatch<React.SetStateAction<IInvitation[]>>
+  invitations: IInvitation[]
+}
 
-  const fetchInvitations = async () => {
-    const res = await axios.get('https://taratect.vercel.app/api/invitation')
-    setInvitations(res.data.data)
-  }
-
-  useEffect(() => {
-    fetchInvitations()
-  }, [])
+const TheTable = ({ template, setInvitations, invitations }: Props) => {
+  const [isEdit, setIsEdit] = useState(false)
+  const [editingId, setEditingId] = useState('')
 
   const replaceLinkNama = (link: string) => {
     const regex = /{link_tamu}/g
 
     if (template === '') return link
     return template.replace(regex, link)
+  }
+
+  const handleCheck = (invitation: IInvitation) => {
+    const checkedInvitations = invitations.filter((invitation) => invitation.isCompleted)
+    const allChecked = invitations.length === checkedInvitations.length
+
+    const toggleCheck = (invitation: IInvitation) => {
+      const newInvitations = invitations.map((i) => {
+        if (i._id === invitation._id) {
+          return { ...i, isCompleted: !i.isCompleted }
+        }
+        return i
+      })
+      setInvitations(newInvitations)
+    }
+
+    if (invitation) {
+      toggleCheck(invitation)
+    } else if (allChecked) {
+      setInvitations(invitations.map((i) => ({ ...i, isCompleted: false })))
+    } else {
+      setInvitations(invitations.map((i) => ({ ...i, isCompleted: true })))
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    await axios
+      .delete(`https://taratect.vercel.app/api/invitation/delete`, { data: { id } })
+      .then(() => {
+        toast.success('Data deleted successfully')
+        setInvitations(invitations.filter((invitation) => invitation._id !== id))
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -70,12 +100,36 @@ const TheTable = ({ template }: { template: string }) => {
               <Checkbox
                 className="size-6"
                 defaultChecked={invitation.isCompleted}
-                onCheckedChange={() => (invitation.isCompleted = !invitation.isCompleted)}
+                onCheckedChange={() => handleCheck(invitation)}
               />
             </TableCell>
 
-            <TableCell className={`max-w-[200px] ${invitation.isCompleted ? 'line-through' : ''}`}>
-              {invitation.name}
+            <TableCell
+              className={`max-w-[200px] capitalize ${invitation.isCompleted ? 'line-through' : ''}`}
+            >
+              {isEdit && editingId === invitation._id ? (
+                <input
+                  type="text"
+                  defaultValue={invitation.name}
+                  autoFocus
+                  className="rounded-sm border border-gray-500 px-2"
+                  onChange={(e) => {
+                    const newInvitations = invitations.map((i) => {
+                      if (i._id === invitation._id) {
+                        return {
+                          ...i,
+                          name: e.target.value,
+                          url: `https://taratect.vercel.app/?to=${encodeURIComponent(e.target.value)}`
+                        }
+                      }
+                      return i
+                    })
+                    setInvitations(newInvitations)
+                  }}
+                />
+              ) : (
+                <span>{invitation.name}</span>
+              )}
             </TableCell>
 
             <TableCell className="w-full text-center">
@@ -84,13 +138,21 @@ const TheTable = ({ template }: { template: string }) => {
                 target="_blank"
                 className="break-keep text-center text-blue-600"
               >
-                {invitation.url}
+                <span>{invitation.url}</span>
               </Link>
             </TableCell>
 
             <TableCell>
               <div className="flex items-center justify-center gap-1 max-md:flex-col">
-                <Button className="flex-1 bg-blue-500">Edit</Button>
+                <Button
+                  className={`flex-1 bg-blue-500`}
+                  onClick={() => {
+                    setIsEdit((prev) => !prev)
+                    setEditingId(invitation._id!)
+                  }}
+                >
+                  {isEdit ? 'Save' : 'Edit'}
+                </Button>
 
                 <Drawer>
                   <DrawerTrigger asChild>
@@ -133,7 +195,11 @@ const TheTable = ({ template }: { template: string }) => {
                   </DrawerContent>
                 </Drawer>
 
-                <Button variant={'destructive'} className="flex-1">
+                <Button
+                  variant={'destructive'}
+                  className="flex-1 hover:bg-red-800"
+                  onClick={() => handleDelete(invitation._id!)}
+                >
                   Delete
                 </Button>
               </div>
