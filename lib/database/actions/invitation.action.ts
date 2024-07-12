@@ -3,6 +3,7 @@
 import { IInvitation } from '@/types'
 import { connectToDatabase } from '..'
 import Invitation from '../models/invitation.model'
+import { handleError } from '@/lib/utils'
 
 export const createInvitation = async (invitation: IInvitation) => {
   try {
@@ -11,20 +12,20 @@ export const createInvitation = async (invitation: IInvitation) => {
 
     return JSON.parse(JSON.stringify(newInvitation))
   } catch (error) {
-    console.log(error)
+    handleError(error as Error)
   }
 }
 
 export const getAllInvitation = async () => {
   try {
     await connectToDatabase()
-    const invitation = await Invitation.find({}).sort({ date: 1 })
+    const invitation = await Invitation.find({}).sort({ date: -1 })
 
     if (!invitation) throw new Error('Invitation not found')
 
     return JSON.parse(JSON.stringify(invitation))
   } catch (err) {
-    console.log(err)
+    handleError(err as Error)
   }
 }
 
@@ -33,7 +34,7 @@ export const deleteInvitation = async (id: string) => {
     await connectToDatabase()
     await Invitation.findByIdAndDelete(id)
   } catch (error) {
-    console.log(error)
+    handleError(error as Error)
   }
 }
 
@@ -42,6 +43,6 @@ export const updateInvitation = async (id: string, data: IInvitation) => {
     await connectToDatabase()
     await Invitation.findByIdAndUpdate(id, data)
   } catch (error) {
-    console.log(error)
+    handleError(error as Error)
   }
 }

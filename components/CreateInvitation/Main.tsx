@@ -11,7 +11,7 @@ const Main = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const [template, setTemplate] = useState('')
+  const [template, setTemplate] = useState(localStorage.getItem('template') || '')
   const [isEditing, setIsEditing] = useState(false)
 
   const [invitations, setInvitations] = useState<IInvitation[]>([])
@@ -20,6 +20,10 @@ const Main = () => {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/invitation`)
     setInvitations(res.data.data)
   }
+
+  useEffect(() => {
+    localStorage.setItem('template', template)
+  }, [template])
 
   useEffect(() => {
     fetchInvitations()

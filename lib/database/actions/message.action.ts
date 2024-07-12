@@ -3,6 +3,7 @@
 import { IMessage } from '@/types'
 import { connectToDatabase } from '..'
 import Message from '../models/message.model'
+import { handleError } from '@/lib/utils'
 
 export const createMessage = async (message: IMessage) => {
   try {
@@ -11,7 +12,7 @@ export const createMessage = async (message: IMessage) => {
 
     return JSON.parse(JSON.stringify(newMessage))
   } catch (error) {
-    console.log(error)
+    handleError(error as Error)
   }
 }
 
@@ -24,6 +25,6 @@ export const getAllMessage = async () => {
 
     return JSON.parse(JSON.stringify(message))
   } catch (err) {
-    console.log(err)
+    handleError(err as Error)
   }
 }

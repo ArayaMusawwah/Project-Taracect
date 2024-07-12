@@ -5,6 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import axios from 'axios'
 import { useState } from 'react'
 import { VscLoading } from 'react-icons/vsc'
+import { handleError } from '@/lib/utils'
 
 interface Props {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
@@ -44,7 +45,8 @@ const TheForm = ({
         .post(`${process.env.NEXT_PUBLIC_URL}/api/invitation/create`, {
           name: text as string,
           url,
-          isCompleted: false
+          isCompleted: false,
+          date: Date.now()
         })
         .then(() => {
           fetchInvitations()
@@ -53,7 +55,7 @@ const TheForm = ({
           setIsLoading(false)
         })
     } catch (error) {
-      console.log(error)
+      handleError(error as Error)
     }
 
     if (inputRef.current) inputRef.current.value = ''

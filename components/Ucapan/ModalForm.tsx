@@ -24,6 +24,7 @@ import { ToastOptions, toast } from 'react-toastify'
 import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
 import { VscLoading } from 'react-icons/vsc'
+import { handleError } from '@/lib/utils'
 
 const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -95,7 +96,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
         }
       )
     } catch (error) {
-      console.log(error)
+      handleError(error as Error)
     }
   }
 

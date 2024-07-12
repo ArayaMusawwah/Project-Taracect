@@ -30,6 +30,7 @@ import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { IInvitation } from '@/types'
 import axios from 'axios'
+import { handleError } from '@/lib/utils'
 
 interface Props {
   template: string
@@ -41,7 +42,6 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
   const [isEdit, setIsEdit] = useState(false)
   const [editingId, setEditingId] = useState('')
   const [editingValue, setEditingValue] = useState<IInvitation[]>()
-  console.log('TheTable ~ editingValue=>', editingValue)
 
   const replaceLinkNama = (link: string) => {
     const regex = /{link_tamu}/g
@@ -80,7 +80,7 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
         toast.success('Data deleted successfully')
         setInvitations(invitations.filter((invitation) => invitation._id !== id))
       })
-      .catch((err) => console.log(err))
+      .catch((err) => handleError(err as Error))
   }
 
   const handleChange = async (id: string) => {

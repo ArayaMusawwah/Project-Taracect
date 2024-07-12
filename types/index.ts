@@ -10,4 +10,5 @@ export interface IInvitation {
   name: string
   url: string
   isCompleted: boolean
+  date?: Date
 }
