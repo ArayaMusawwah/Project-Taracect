@@ -10,7 +10,7 @@ import MegaMendung from './MegaMendung'
 const Ucapan = () => {
   const [data, setData] = useState<IMessage[]>([])
   const fetchData = async () => {
-    const res = await axios.get(`${process.env.PRODUCTION_URL}/api/messages`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/messages`)
     setData(res.data.data)
   }
 

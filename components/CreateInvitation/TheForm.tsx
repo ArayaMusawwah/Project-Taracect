@@ -36,12 +36,12 @@ const TheForm = ({
     e.preventDefault()
     if (inputRef.current?.value.trim() === '') return
     const text = inputRef?.current?.value.trim()
-    const url = `${process.env.PRODUCTION_URL}/?to=${encodeURIComponent(text as string)}`
+    const url = `${process.env.NEXT_PUBLIC_URL}/?to=${encodeURIComponent(text as string)}`
 
     try {
       setIsLoading(true)
       await axios
-        .post(`${process.env.PRODUCTION_URL}/api/invitation/create`, {
+        .post(`${process.env.NEXT_PUBLIC_URL}/api/invitation/create`, {
           name: text as string,
           url,
           isCompleted: false

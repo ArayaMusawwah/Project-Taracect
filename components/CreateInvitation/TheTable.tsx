@@ -73,7 +73,7 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
 
   const handleDelete = async (id: string) => {
     await axios
-      .delete(`${process.env.PRODUCTION_URL}/api/invitation/delete`, { data: { id } })
+      .delete(`${process.env.NEXT_PUBLIC_URL}/api/invitation/delete`, { data: { id } })
       .then(() => {
         toast.success('Data deleted successfully')
         setInvitations(invitations.filter((invitation) => invitation._id !== id))
@@ -119,7 +119,7 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
                         return {
                           ...i,
                           name: e.target.value,
-                          url: `${process.env.PRODUCTION_URL}/?to=${encodeURIComponent(e.target.value)}`
+                          url: `${process.env.NEXT_PUBLIC_URL}/?to=${encodeURIComponent(e.target.value)}`
                         }
                       }
                       return i
