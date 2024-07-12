@@ -3,7 +3,6 @@ import { Button } from '../ui/button'
 import { FaInfoCircle } from 'react-icons/fa'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import axios from 'axios'
-import { IInvitation } from '@/types'
 import { useState } from 'react'
 import { VscLoading } from 'react-icons/vsc'
 
@@ -37,12 +36,12 @@ const TheForm = ({
     e.preventDefault()
     if (inputRef.current?.value.trim() === '') return
     const text = inputRef?.current?.value.trim()
-    const url = `https://taratect.vercel.app/?to=${encodeURIComponent(text as string)}`
+    const url = `${process.env.PRODUCTION_URL}/?to=${encodeURIComponent(text as string)}`
 
     try {
       setIsLoading(true)
       await axios
-        .post('https://taratect.vercel.app/api/invitation/create', {
+        .post(`${process.env.PRODUCTION_URL}/api/invitation/create`, {
           name: text as string,
           url,
           isCompleted: false

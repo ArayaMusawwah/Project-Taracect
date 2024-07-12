@@ -18,7 +18,7 @@ export const createInvitation = async (invitation: IInvitation) => {
 export const getAllInvitation = async () => {
   try {
     await connectToDatabase()
-    const invitation = await Invitation.find({}).sort({ date: -1 })
+    const invitation = await Invitation.find({}).sort({ date: 1 })
 
     if (!invitation) throw new Error('Invitation not found')
 

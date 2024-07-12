@@ -17,7 +17,7 @@ const Main = () => {
   const [invitations, setInvitations] = useState<IInvitation[]>([])
 
   const fetchInvitations = async () => {
-    const res = await axios.get('https://taratect.vercel.app/api/invitation')
+    const res = await axios.get(`${process.env.PRODUCTION_URL}/api/invitation`)
     setInvitations(res.data.data)
   }
 

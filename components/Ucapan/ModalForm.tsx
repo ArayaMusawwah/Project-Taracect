@@ -76,7 +76,7 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
     try {
       setIsLoading(true)
       await axios
-        .post(`https://taratect.vercel.app/api/messages/create`, data)
+        .post(`${process.env.PRODUCTION_URL}/api/messages/create`, data)
         .then(() => {
           toaster('Pesan Terkirim!')
           fetchData()
