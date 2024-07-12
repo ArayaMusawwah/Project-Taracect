@@ -4,6 +4,8 @@ import { FaInfoCircle } from 'react-icons/fa'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import axios from 'axios'
 import { IInvitation } from '@/types'
+import { useState } from 'react'
+import { VscLoading } from 'react-icons/vsc'
 
 interface Props {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
@@ -22,6 +24,8 @@ const TheForm = ({
   textareaRef,
   isEditing
 }: Props) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleCreateTemplate = (e: React.FormEvent) => {
     e.preventDefault()
     setIsEditing((prev) => !prev)
@@ -36,6 +40,7 @@ const TheForm = ({
     const url = `https://taratect.vercel.app/?to=${encodeURIComponent(text as string)}`
 
     try {
+      setIsLoading(true)
       await axios
         .post('https://taratect.vercel.app/api/invitation/create', {
           name: text as string,
@@ -44,6 +49,9 @@ const TheForm = ({
         })
         .then(() => {
           fetchInvitations()
+        })
+        .finally(() => {
+          setIsLoading(false)
         })
     } catch (error) {
       console.log(error)
@@ -61,7 +69,9 @@ const TheForm = ({
           className="w-full rounded-md px-4 py-1"
           ref={inputRef}
         />
-        <Button type="submit">Tambah</Button>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? <VscLoading className="inline animate-spin text-2xl" /> : 'Tambah'}
+        </Button>
       </form>
 
       <Separator className="my-5 bg-gray-500" />
@@ -97,6 +107,7 @@ const TheForm = ({
           className="w-full rounded-md px-4 py-1 disabled:bg-gray-300 disabled:text-gray-500"
           disabled={!isEditing}
         />
+
         {isEditing ? (
           <Button className="bg-blue-500 hover:bg-blue-400">Simpan</Button>
         ) : (
