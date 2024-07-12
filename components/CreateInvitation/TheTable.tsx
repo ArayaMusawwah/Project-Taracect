@@ -27,19 +27,21 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { FaLink } from 'react-icons/fa6'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { toast } from 'react-toastify'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { IInvitation } from '@/types'
 import axios from 'axios'
 
 interface Props {
   template: string
-  setInvitations: React.Dispatch<React.SetStateAction<IInvitation[]>>
   invitations: IInvitation[]
+  setInvitations: React.Dispatch<React.SetStateAction<IInvitation[]>>
 }
 
 const TheTable = ({ template, setInvitations, invitations }: Props) => {
   const [isEdit, setIsEdit] = useState(false)
   const [editingId, setEditingId] = useState('')
+  const [editingValue, setEditingValue] = useState<IInvitation[]>()
+  console.log('TheTable ~ editingValue=>', editingValue)
 
   const replaceLinkNama = (link: string) => {
     const regex = /{link_tamu}/g
@@ -81,8 +83,17 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
       .catch((err) => console.log(err))
   }
 
+  const handleChange = async (id: string) => {
+    setIsEdit(false)
+    setInvitations(editingValue!)
+    const edited = editingValue?.find((edit) => edit._id === id)
+
+    if (edited)
+      await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/invitation/update`, { data: edited })
+  }
+
   return (
-    <Table className="">
+    <Table>
       <TableCaption>Daftar nama yang anda undang</TableCaption>
       <TableHeader>
         <TableRow className="*:text-center">
@@ -93,9 +104,11 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
         </TableRow>
       </TableHeader>
 
+      {/* TODO: save to database when edit */}
+
       <TableBody>
         {invitations.map((invitation) => (
-          <TableRow key={invitation._id} className="bg-gray">
+          <TableRow key={invitation._id}>
             <TableCell>
               <Checkbox
                 className="size-6"
@@ -113,7 +126,7 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
                   defaultValue={invitation.name}
                   autoFocus
                   className="rounded-sm border border-gray-500 px-2"
-                  onChange={(e) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const newInvitations = invitations.map((i) => {
                       if (i._id === invitation._id) {
                         return {
@@ -124,7 +137,8 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
                       }
                       return i
                     })
-                    setInvitations(newInvitations)
+
+                    setEditingValue(newInvitations)
                   }}
                 />
               ) : (
@@ -144,15 +158,24 @@ const TheTable = ({ template, setInvitations, invitations }: Props) => {
 
             <TableCell>
               <div className="flex items-center justify-center gap-1 max-md:flex-col">
-                <Button
-                  className={`flex-1 bg-blue-500`}
-                  onClick={() => {
-                    setIsEdit((prev) => !prev)
-                    setEditingId(invitation._id!)
-                  }}
-                >
-                  {isEdit ? 'Save' : 'Edit'}
-                </Button>
+                {isEdit && editingId === invitation._id ? (
+                  <Button
+                    className="flex-1 bg-blue-500"
+                    onClick={() => handleChange(invitation._id!)}
+                  >
+                    Save
+                  </Button>
+                ) : (
+                  <Button
+                    className="flex-1 bg-blue-500"
+                    onClick={() => {
+                      setEditingId(invitation._id!)
+                      setIsEdit(true)
+                    }}
+                  >
+                    Edit
+                  </Button>
+                )}
 
                 <Drawer>
                   <DrawerTrigger asChild>

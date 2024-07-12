@@ -36,3 +36,12 @@ export const deleteInvitation = async (id: string) => {
     console.log(error)
   }
 }
+
+export const updateInvitation = async (id: string, data: IInvitation) => {
+  try {
+    await connectToDatabase()
+    await Invitation.findByIdAndUpdate(id, data)
+  } catch (error) {
+    console.log(error)
+  }
+}

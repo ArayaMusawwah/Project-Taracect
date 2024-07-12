@@ -29,7 +29,7 @@ const AudioPlayer = () => {
         exit={{ opacity: 0, scale: 0 }}
       >
         <audio loop ref={audioRef} autoPlay={!isActive}>
-          <source src="/audio/backsound.mp3" type="audio/mpeg" />
+          <source src="/audio/backsound_jawa.mp3" type="audio/mpeg" />
         </audio>
         {isPlaying ? (
           <BsDisc className="animate-spin-slow text-5xl text-white" onClick={handlePlayPause} />
