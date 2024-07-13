@@ -54,16 +54,16 @@ const TheTable = ({
       </TableHeader>
 
       <TableBody>
-        {invitations.length === 0 ? (
-          <TableRow>
-            <TableCell colSpan={4} className="text-center">
-              Belum ada undangan yang dibuat
-            </TableCell>
-          </TableRow>
-        ) : isLoading ? (
+        {isLoading ? (
           <TableRow>
             <TableCell colSpan={4}>
               <VscLoading className="mx-auto animate-spin text-3xl" />
+            </TableCell>
+          </TableRow>
+        ) : invitations.length === 0 ? (
+          <TableRow>
+            <TableCell colSpan={4} className="text-center">
+              Belum ada undangan yang dibuat
             </TableCell>
           </TableRow>
         ) : (

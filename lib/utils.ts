@@ -67,4 +67,5 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
  */
 export function handleError(error: Error): void {
   console.error('Error occurred:', error.message)
+  throw new Error(error.message)
 }
