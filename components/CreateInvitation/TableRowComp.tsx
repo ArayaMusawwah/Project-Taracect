@@ -19,7 +19,7 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import { handleError } from '@/lib/utils'
 import { IInvitation } from '@/types'
-
+import { useDebouncedCallback } from 'use-debounce'
 interface Props {
   template: string
   invitations: IInvitation[]
@@ -52,7 +52,7 @@ const TableRowComp = ({
     return template.replace(regex, link)
   }
 
-  const handleCheck = (invitation: IInvitation) => {
+  const handleCheck = useDebouncedCallback((invitation: IInvitation) => {
     const checkedInvitations = invitations.filter(
       (invitation: IInvitation) => invitation.isCompleted
     )
@@ -82,7 +82,7 @@ const TableRowComp = ({
     } else {
       setInvitations(invitations.map((i: IInvitation) => ({ ...i, isCompleted: true })))
     }
-  }
+  }, 1000)
 
   const handleDelete = async (id: string) => {
     await axios
