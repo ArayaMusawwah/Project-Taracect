@@ -8,7 +8,7 @@ export const PUT = async (req: Request) => {
   try {
     await updateInvitation(data._id, data)
     revalidatePath('/')
-    return NextResponse.json({ message: 'Invitation updated successfully', data }, { status: 200 })
+    return NextResponse.json({ message: 'Invitation updated successfully' }, { status: 200 })
   } catch (error) {
     return NextResponse.json({ message: 'Server Errorr' + error }, { status: 500 })
   }
