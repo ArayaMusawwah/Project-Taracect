@@ -52,7 +52,7 @@ const TableRowComp = ({
     return template.replace(regex, link)
   }
 
-  const handleCheck = (invitation: IInvitation) => {
+  const handleCheck = async (invitation: IInvitation) => {
     const checkedInvitations = invitations.filter(
       (invitation: IInvitation) => invitation.isCompleted
     )
@@ -74,6 +74,11 @@ const TableRowComp = ({
       setInvitations(invitations.map((i: IInvitation) => ({ ...i, isCompleted: false })))
     } else {
       setInvitations(invitations.map((i: IInvitation) => ({ ...i, isCompleted: true })))
+    }
+    try {
+      await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/invitation/update`, { data: invitation })
+    } catch (error) {
+      handleError(error as Error)
     }
   }
 
