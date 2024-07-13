@@ -40,6 +40,7 @@ const TheTable = ({
   const [isEdit, setIsEdit] = useState(false)
   const [editingId, setEditingId] = useState('')
   const [editingValue, setEditingValue] = useState<IInvitation[]>()
+  console.log('editingValue=>', editingValue)
 
   return (
     <Table>

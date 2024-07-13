@@ -94,7 +94,25 @@ const TableRowComp = ({
       .catch((err) => handleError(err as Error))
   }
 
-  const handleChange = async (id: string) => {
+  const handleInputChange = useDebouncedCallback(
+    ({ target: { value } }: React.ChangeEvent<HTMLInputElement>, invitation: IInvitation) => {
+      const newInvitations = invitations.map((i: IInvitation) => {
+        if (i._id === invitation._id) {
+          return {
+            ...i,
+            name: value,
+            url: `${process.env.NEXT_PUBLIC_URL}/?to=${encodeURIComponent(value)}`
+          }
+        }
+        return i
+      })
+
+      setEditingValue(newInvitations)
+    },
+    750
+  )
+
+  const handleChangeToDB = async (id: string) => {
     setIsEdit(false)
     setInvitations(editingValue!)
     const edited = editingValue?.find((edit: IInvitation) => edit._id === id)
@@ -122,20 +140,7 @@ const TableRowComp = ({
             defaultValue={invitation.name}
             autoFocus
             className="rounded-sm border border-gray-500 px-2"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              const newInvitations = invitations.map((i: IInvitation) => {
-                if (i._id === invitation._id) {
-                  return {
-                    ...i,
-                    name: e.target.value,
-                    url: `${process.env.NEXT_PUBLIC_URL}/?to=${encodeURIComponent(e.target.value)}`
-                  }
-                }
-                return i
-              })
-
-              setEditingValue(newInvitations)
-            }}
+            onChange={(e) => handleInputChange(e, invitation)}
           />
         ) : (
           <span>{invitation.name}</span>
@@ -155,7 +160,10 @@ const TableRowComp = ({
       <TableCell>
         <div className="flex items-center justify-center gap-1 max-md:flex-col">
           {isEdit && editingId === invitation._id ? (
-            <Button className="flex-1 bg-blue-500" onClick={() => handleChange(invitation._id!)}>
+            <Button
+              className="flex-1 bg-blue-500"
+              onClick={() => handleChangeToDB(invitation._id!)}
+            >
               Save
             </Button>
           ) : (
