@@ -13,7 +13,12 @@ const Main = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const [template, setTemplate] = useState(localStorage.getItem('template') || '')
+  let windowLocalStorage
+  if (typeof window !== 'undefined') {
+    windowLocalStorage = localStorage.getItem('template') || ''
+  }
+
+  const [template, setTemplate] = useState(windowLocalStorage || '')
   const [isEditing, setIsEditing] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [invitations, setInvitations] = useState<IInvitation[]>([])
