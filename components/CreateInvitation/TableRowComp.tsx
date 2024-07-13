@@ -140,6 +140,7 @@ const TableRowComp = ({
             defaultValue={invitation.name}
             autoFocus
             className="rounded-sm border border-gray-500 px-2"
+            onBlur={() => setIsEdit(false)}
             onChange={(e) => handleInputChange(e, invitation)}
           />
         ) : (

@@ -40,7 +40,6 @@ const TheTable = ({
   const [isEdit, setIsEdit] = useState(false)
   const [editingId, setEditingId] = useState('')
   const [editingValue, setEditingValue] = useState<IInvitation[]>()
-  console.log('editingValue=>', editingValue)
 
   return (
     <Table>
@@ -55,7 +54,13 @@ const TheTable = ({
       </TableHeader>
 
       <TableBody>
-        {isLoading ? (
+        {invitations.length === 0 ? (
+          <TableRow>
+            <TableCell colSpan={4} className="text-center">
+              Belum ada undangan yang dibuat
+            </TableCell>
+          </TableRow>
+        ) : isLoading ? (
           <TableRow>
             <TableCell colSpan={4}>
               <VscLoading className="mx-auto animate-spin text-3xl" />
@@ -77,11 +82,17 @@ const TheTable = ({
         )}
       </TableBody>
       <TableFooter>
-        <TableRow>
-          <TableCell colSpan={4} className="text-center">
-            <TablePagination pageCount={pageCount} currentPage={currentPage} paginate={paginate} />
-          </TableCell>
-        </TableRow>
+        {invitations.length > 0 && (
+          <TableRow>
+            <TableCell colSpan={4} className="text-center">
+              <TablePagination
+                pageCount={pageCount}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
+            </TableCell>
+          </TableRow>
+        )}
 
         <TableRow>
           <TableCell colSpan={3} className="text-center">
