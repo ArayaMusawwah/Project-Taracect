@@ -6,6 +6,8 @@ import TheForm from './TheForm'
 import TheTable from './TheTable'
 import { IInvitation } from '@/types'
 import axios from 'axios'
+import { handleError } from '@/lib/utils'
+import usePagination from '@/hooks/usePagination'
 
 const Main = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -13,13 +15,8 @@ const Main = () => {
 
   const [template, setTemplate] = useState(localStorage.getItem('template') || '')
   const [isEditing, setIsEditing] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false)
   const [invitations, setInvitations] = useState<IInvitation[]>([])
-
-  const fetchInvitations = async () => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/invitation`)
-    setInvitations(res.data.data)
-  }
 
   useEffect(() => {
     localStorage.setItem('template', template)
@@ -28,6 +25,20 @@ const Main = () => {
   useEffect(() => {
     fetchInvitations()
   }, [setInvitations])
+
+  const { pageCount, currentItems, currentPage, paginate } = usePagination({ invitations })
+
+  const fetchInvitations = async () => {
+    try {
+      setIsLoading(true)
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/invitation`)
+      setInvitations(res.data.data)
+    } catch (error) {
+      handleError(error as Error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <main className="w-full max-w-sm rounded-lg bg-stone-200 p-5 text-center shadow-lg shadow-stone-500/30 md:max-w-4xl">
@@ -40,7 +51,16 @@ const Main = () => {
         fetchInvitations={fetchInvitations}
       />
 
-      <TheTable template={template} setInvitations={setInvitations} invitations={invitations} />
+      <TheTable
+        template={template}
+        invitations={invitations}
+        isLoading={isLoading}
+        pageCount={pageCount}
+        currentItems={currentItems}
+        currentPage={currentPage}
+        setInvitations={setInvitations}
+        paginate={paginate}
+      />
     </main>
   )
 }

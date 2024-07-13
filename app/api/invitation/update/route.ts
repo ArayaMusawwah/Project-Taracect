@@ -2,11 +2,11 @@ import { updateInvitation } from '@/lib/database/actions/invitation.action'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 
-export const PATCH = async (req: Request) => {
-  const { id, data } = await req.json()
+export const PUT = async (req: Request) => {
+  const { data } = await req.json()
 
   try {
-    await updateInvitation(id, data)
+    await updateInvitation(data._id, data)
     revalidatePath('/')
     return NextResponse.json({ message: 'Invitation updated successfully', data }, { status: 200 })
   } catch (error) {

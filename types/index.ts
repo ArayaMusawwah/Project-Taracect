@@ -12,3 +12,9 @@ export interface IInvitation {
   isCompleted: boolean
   date?: Date
 }
+
+export type UrlQueryParams = {
+  params: string
+  key: string
+  value: string | null
+}
