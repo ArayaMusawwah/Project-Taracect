@@ -20,6 +20,7 @@ import axios from 'axios'
 import { handleError } from '@/lib/utils'
 import { IInvitation } from '@/types'
 import { useDebouncedCallback } from 'use-debounce'
+import { useState } from 'react'
 interface Props {
   template: string
   invitations: IInvitation[]
@@ -45,6 +46,9 @@ const TableRowComp = ({
   setEditingValue,
   setEditingId
 }: Props) => {
+  // const checkedInv: IInvitation[] = []
+  const [checkedInv, setCheckedInv] = useState([])
+
   const replaceLinkNama = (link: string) => {
     const regex = /{link_tamu}/g
 
@@ -52,7 +56,19 @@ const TableRowComp = ({
     return template.replace(regex, link)
   }
 
-  const handleCheck = useDebouncedCallback((invitation: IInvitation) => {
+  const debouncedUpdate = useDebouncedCallback(async () => {
+    try {
+      await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/invitation/update`, {
+        data: checkedInv
+      })
+    } catch (error) {
+      handleError(error as Error)
+    } finally {
+      setCheckedInv([])
+    }
+  }, 1000)
+
+  const handleCheck = (invitation: IInvitation) => {
     const checkedInvitations = invitations.filter(
       (invitation: IInvitation) => invitation.isCompleted
     )
@@ -65,14 +81,11 @@ const TableRowComp = ({
         }
         return i
       })
+      setCheckedInv(
+        (prev) => [...prev, { ...invitation, isCompleted: !invitation.isCompleted }] as never[]
+      )
       setInvitations(newInvitations)
-      try {
-        await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/invitation/update`, {
-          data: { ...invitation, isCompleted: !invitation.isCompleted }
-        })
-      } catch (error) {
-        handleError(error as Error)
-      }
+      debouncedUpdate()
     }
 
     if (invitation) {
@@ -82,7 +95,7 @@ const TableRowComp = ({
     } else {
       setInvitations(invitations.map((i: IInvitation) => ({ ...i, isCompleted: true })))
     }
-  }, 1000)
+  }
 
   const handleDelete = async (id: string) => {
     await axios
@@ -94,23 +107,22 @@ const TableRowComp = ({
       .catch((err) => handleError(err as Error))
   }
 
-  const handleInputChange = useDebouncedCallback(
-    ({ target: { value } }: React.ChangeEvent<HTMLInputElement>, invitation: IInvitation) => {
-      const newInvitations = invitations.map((i: IInvitation) => {
-        if (i._id === invitation._id) {
-          return {
-            ...i,
-            name: value,
-            url: `${process.env.NEXT_PUBLIC_URL}/?to=${encodeURIComponent(value)}`
-          }
+  const handleInputChange = (
+    { target: { value } }: React.ChangeEvent<HTMLInputElement>,
+    invitation: IInvitation
+  ) => {
+    const newInvitations = invitations.map((i: IInvitation) => {
+      if (i._id === invitation._id) {
+        return {
+          ...i,
+          name: value,
+          url: `${process.env.NEXT_PUBLIC_URL}/?to=${encodeURIComponent(value)}`
         }
-        return i
-      })
-
-      setEditingValue(newInvitations)
-    },
-    750
-  )
+      }
+      return i
+    })
+    setEditingValue(newInvitations)
+  }
 
   const handleChangeToDB = async (id: string) => {
     setIsEdit(false)
@@ -118,7 +130,7 @@ const TableRowComp = ({
     const edited = editingValue?.find((edit: IInvitation) => edit._id === id)
 
     if (edited)
-      await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/invitation/update`, { data: edited })
+      await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/invitation/update`, { data: edited })
   }
 
   return currentItems.map((invitation: IInvitation) => (

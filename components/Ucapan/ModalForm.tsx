@@ -131,18 +131,21 @@ const ModalForm = ({ fetchData }: { fetchData: () => Promise<void> }) => {
                 defaultValue={namaTamu || ''}
                 ref={inputRef}
                 required
-                className="w-full border-2 border-main-accent3 bg-transparent px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400"
+                className="w-full border-2 border-main-accent3 bg-transparent px-4 py-2 font-semibold placeholder:font-normal focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400"
               />
               <textarea
                 placeholder="Berikan Ucapan & Doa..."
                 name="ucapan"
                 ref={ucapanRef}
                 required
-                className="w-full resize-none border-2 border-main-accent3 bg-transparent px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400"
+                className="w-full resize-none border-2 border-main-accent3 bg-transparent px-4 py-2 font-semibold placeholder:font-normal focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400"
               />
               <Select onValueChange={setRsvp} required>
                 <SelectTrigger className="w-full rounded-none border-2 border-main-accent3 bg-transparent focus:border-transparent focus:outline-none focus:ring-2 focus:ring-stone-400">
-                  <SelectValue placeholder="Konfirmasi Kehadiran" />
+                  <SelectValue
+                    placeholder="Konfirmasi Kehadiran"
+                    className="!font-semibold placeholder:font-normal"
+                  />
                 </SelectTrigger>
                 <SelectContent
                   className="!focus:ring-none bg-main-accent2 focus:bg-main-accent6"

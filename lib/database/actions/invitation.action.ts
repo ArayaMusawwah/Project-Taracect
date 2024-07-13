@@ -46,3 +46,15 @@ export const updateInvitation = async (id: string, data: IInvitation) => {
     handleError(error as Error)
   }
 }
+
+export const updateManyInvitation = async (data: IInvitation[]) => {
+  try {
+    await connectToDatabase()
+    await Invitation.updateMany(
+      { _id: { $in: data.map((i) => i._id) } },
+      { $set: { isCompleted: data[0].isCompleted } }
+    )
+  } catch (error) {
+    handleError(error as Error)
+  }
+}

@@ -8,7 +8,12 @@ const parentVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'linear', staggerChildren: 0.5, staggerDirection: -1 }
+    transition: {
+      duration: 0.8,
+      ease: 'linear',
+      staggerChildren: 0.5,
+      staggerDirection: -1
+    }
   }
 }
 
@@ -17,7 +22,7 @@ const childVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'linear' }
+    transition: { duration: 0.8, ease: 'linear', delay: 0.8 }
   }
 }
 
@@ -29,8 +34,8 @@ const KalimatPengantar = () => {
         style={{ boxShadow: '0 0 7px rgb(228 197 158 / 20)' }}
         initial={{ y: 500, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
         viewport={{ once: true }}
-        transition={{ duration: 1 }}
       >
         <MotionDiv
           className="h-[82vh] w-full bg-main-accent3 px-8 py-16"
