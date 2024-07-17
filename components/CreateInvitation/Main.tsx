@@ -51,6 +51,7 @@ const Main = () => {
         inputRef={inputRef}
         textareaRef={textareaRef}
         isEditing={isEditing}
+        template={template}
         setIsEditing={setIsEditing}
         setTemplate={setTemplate}
         fetchInvitations={fetchInvitations}

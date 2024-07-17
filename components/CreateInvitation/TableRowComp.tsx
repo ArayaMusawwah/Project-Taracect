@@ -1,26 +1,16 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import {
-  WhatsappIcon,
-  WhatsappShareButton,
-  EmailShareButton,
-  EmailIcon,
-  TelegramShareButton,
-  TelegramIcon,
-  FacebookShareButton,
-  FacebookIcon
-} from 'react-share'
+
 import { TableCell, TableRow } from '@/components/ui/table'
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Checkbox } from '@/components/ui/checkbox'
-import { FaLink } from 'react-icons/fa6'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { handleError } from '@/lib/utils'
 import { IInvitation } from '@/types'
 import { useDebouncedCallback } from 'use-debounce'
 import { useState } from 'react'
+import { VscLoading } from 'react-icons/vsc'
+import TableDrawer from './TableDrawer'
 interface Props {
   template: string
   invitations: IInvitation[]
@@ -48,13 +38,7 @@ const TableRowComp = ({
 }: Props) => {
   // const checkedInv: IInvitation[] = []
   const [checkedInv, setCheckedInv] = useState([])
-
-  const replaceLinkNama = (link: string) => {
-    const regex = /{link_tamu}/g
-
-    if (template === '') return link
-    return template.replace(regex, link)
-  }
+  const [loadingDelete, setLoadingDelete] = useState(false)
 
   const debouncedUpdate = useDebouncedCallback(async () => {
     try {
@@ -98,6 +82,7 @@ const TableRowComp = ({
   }
 
   const handleDelete = async (id: string) => {
+    setLoadingDelete(true)
     await axios
       .delete(`${process.env.NEXT_PUBLIC_URL}/api/invitation/delete`, { data: { id } })
       .then(() => {
@@ -105,6 +90,7 @@ const TableRowComp = ({
         setInvitations(invitations.filter((invitation: IInvitation) => invitation._id !== id))
       })
       .catch((err) => handleError(err as Error))
+      .finally(() => setLoadingDelete(false))
   }
 
   const handleInputChange = (
@@ -190,53 +176,14 @@ const TableRowComp = ({
             </Button>
           )}
 
-          <Drawer>
-            <DrawerTrigger asChild>
-              <Button className="flex-1 bg-green-500">Share</Button>
-            </DrawerTrigger>
-
-            <DrawerContent className="flex items-center justify-center bg-stone-200">
-              <div className="flex flex-col gap-4 py-6">
-                <DrawerTitle className="text-center">
-                  Bagikan ke {invitation.name} via:{' '}
-                </DrawerTitle>
-
-                <div className="flex justify-center gap-3">
-                  <button className="size rounded-full bg-gray-500 p-2">
-                    <CopyToClipboard
-                      text={replaceLinkNama(invitation.url)}
-                      onCopy={() => toast.success('Copied!')}
-                    >
-                      <FaLink className="text-3xl text-white" />
-                    </CopyToClipboard>
-                  </button>
-
-                  <WhatsappShareButton url={replaceLinkNama(invitation.url)}>
-                    <WhatsappIcon size={50} round />
-                  </WhatsappShareButton>
-
-                  <TelegramShareButton url={replaceLinkNama(invitation.url)}>
-                    <TelegramIcon size={50} round />
-                  </TelegramShareButton>
-
-                  <EmailShareButton url={replaceLinkNama(invitation.url)}>
-                    <EmailIcon size={50} round />
-                  </EmailShareButton>
-
-                  <FacebookShareButton url={replaceLinkNama(invitation.url)}>
-                    <FacebookIcon size={50} round />
-                  </FacebookShareButton>
-                </div>
-              </div>
-            </DrawerContent>
-          </Drawer>
+          <TableDrawer invitation={invitation} template={template} />
 
           <Button
             variant={'destructive'}
             className="flex-1 hover:bg-red-800"
             onClick={() => handleDelete(invitation._id!)}
           >
-            Delete
+            {loadingDelete ? <VscLoading className="inline animate-spin text-2xl" /> : 'Delete'}
           </Button>
         </div>
       </TableCell>

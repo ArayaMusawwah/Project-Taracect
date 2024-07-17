@@ -11,6 +11,7 @@ interface Props {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
   setTemplate: React.Dispatch<React.SetStateAction<string>>
   fetchInvitations: () => Promise<void>
+  template: string
   inputRef: React.RefObject<HTMLInputElement>
   textareaRef: React.RefObject<HTMLTextAreaElement>
   isEditing: boolean
@@ -21,6 +22,7 @@ const TheForm = ({
   setTemplate,
   fetchInvitations,
   inputRef,
+  template,
   textareaRef,
   isEditing
 }: Props) => {
@@ -66,8 +68,8 @@ const TheForm = ({
       <form onSubmit={handleCreate} className="flex flex-col gap-3">
         <input
           type="text"
-          placeholder="Nama undangan"
-          className="w-full rounded-md px-4 py-1"
+          placeholder="Nama Tamu"
+          className="w-full rounded-md border border-black/30 px-4 py-1"
           ref={inputRef}
         />
         <Button type="submit" disabled={isLoading}>
@@ -104,6 +106,7 @@ const TheForm = ({
       <form className="mt-2 flex flex-col gap-3" onSubmit={handleCreateTemplate}>
         <textarea
           ref={textareaRef}
+          defaultValue={template}
           placeholder="buat template pesan (tidak wajib)"
           className="w-full rounded-md px-4 py-1 disabled:bg-gray-300 disabled:text-gray-500"
           disabled={!isEditing}
